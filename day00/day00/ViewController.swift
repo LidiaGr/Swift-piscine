@@ -93,6 +93,9 @@ import UIKit
 //MARK: Ex02
 class ViewController: UIViewController {
     private let result = UILabel()
+    private var input = String();
+    private var res = Int();
+    private var sign = String();
 
     private var empty1 : UIButton { createButton(value: "", bgColor: UIColor.darkGray, textColor: UIColor.darkGray) }
     private var empty2 : UIButton { createButton(value: "", bgColor: UIColor.darkGray, textColor: UIColor.darkGray) }
@@ -129,8 +132,69 @@ class ViewController: UIViewController {
         return button
     }
     
+    func makeOperation(signTmp: String) {
+        if (!input.isEmpty) {
+            if (res != 0) {
+                countRes()
+            } else {
+                res = Int(input)!
+            }
+        }
+        input.removeAll()
+        if (sign.isEmpty) {
+            sign = signTmp;
+        } else {
+            countRes()
+        }
+    }
+    
+    func countRes() {
+        switch sign {
+        case "+" :
+            res += Int(input)!
+        case "-":
+            res -= Int(input)!
+        case "*":
+            res *= Int(input)!
+        case "/":
+            res /= Int(input)!
+        default:
+            sign.removeAll()
+            input.removeAll()
+            return
+        }
+        sign.removeAll()
+        input.removeAll()
+    }
+    
     @objc func changeLableValue(target: UIButton!) {
-        result.text = target.currentTitle
+        print(target.currentTitle!, separator: " ", terminator: "")
+        if target.currentTitle == "AC" && !input.isEmpty {
+            input.removeLast()
+            res = 0
+            sign.removeAll()
+        } else if target.currentTitle == "AC" && input.isEmpty {
+            result.text!.removeAll()
+            input.removeAll()
+            res = 0
+            sign.removeAll()
+        } else {
+            if (target.currentTitle == "+" || target.currentTitle == "-"
+                || target.currentTitle == "*" || target.currentTitle == "/"
+                || target.currentTitle == "NEG") {
+                makeOperation(signTmp: target.currentTitle!);
+                result.text = String(res)
+                return
+            } else if target.currentTitle == "=" {
+                countRes()
+                result.text = String(res)
+//                res = 0
+                return
+            } else {
+                input += target.currentTitle!
+            }
+        }
+        result.text = input
     }
     
     fileprivate let stackView: UIStackView = {
@@ -142,14 +206,32 @@ class ViewController: UIViewController {
         return stack
     }()
 
-//    fileprivate let stackNumView: UIStackView = {
-//        let stack = UIStackView()
-//        stack.translatesAutoresizingMaskIntoConstraints = false
-//        stack.distribution = .fillEqually
-//        stack.axis = .vertical
-//        stack.spacing = 5
-//        return stack
-//    }()
+    fileprivate let buttonView: UIStackView = {
+          let stack = UIStackView()
+          stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillProportionally
+          stack.axis = .horizontal
+          stack.spacing = 5
+          return stack
+      }()
+    
+    fileprivate let stackNumView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillEqually
+        stack.axis = .vertical
+        stack.spacing = 5
+        return stack
+    }()
+    
+    fileprivate let stackOpView: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillEqually
+        stack.axis = .vertical
+        stack.spacing = 5
+        return stack
+    }()
     
     fileprivate let stackSubView1: UIStackView = {
         let stack = UIStackView()
@@ -187,6 +269,42 @@ class ViewController: UIViewController {
         return stack
     }()
     
+    fileprivate let stackOpSubView1: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 5
+        return stack
+    }()
+    
+    fileprivate let stackOpSubView2: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 5
+        return stack
+    }()
+    
+    fileprivate let stackOpSubView3: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 5
+        return stack
+    }()
+    
+    fileprivate let stackOpSubView4: UIStackView = {
+        let stack = UIStackView()
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        stack.distribution = .fillEqually
+        stack.axis = .horizontal
+        stack.spacing = 5
+        return stack
+    }()
+    
     private func createLable() {
         result.text = "0"
         result.textColor = UIColor.white
@@ -194,34 +312,45 @@ class ViewController: UIViewController {
     }
     
     fileprivate func createButtons() {
-        stackSubView1.addArrangedSubview(numButton1)
-        stackSubView1.addArrangedSubview(numButton2)
-        stackSubView1.addArrangedSubview(numButton3)
-        stackSubView1.addArrangedSubview(opButtonAc)
-        stackSubView1.addArrangedSubview(opButtonNeg)
+        stackSubView1.addArrangedSubview(numButton7)
+        stackSubView1.addArrangedSubview(numButton8)
+        stackSubView1.addArrangedSubview(numButton9)
+        
+        stackOpSubView1.addArrangedSubview(opButtonAc)
+        stackOpSubView1.addArrangedSubview(opButtonNeg)
         
         stackSubView2.addArrangedSubview(numButton4)
         stackSubView2.addArrangedSubview(numButton5)
         stackSubView2.addArrangedSubview(numButton6)
-        stackSubView2.addArrangedSubview(opButtonSum)
-        stackSubView2.addArrangedSubview(opButtonMul)
         
-        stackSubView3.addArrangedSubview(numButton7)
-        stackSubView3.addArrangedSubview(numButton8)
-        stackSubView3.addArrangedSubview(numButton9)
-        stackSubView3.addArrangedSubview(opButtonDif)
-        stackSubView3.addArrangedSubview(opButtonDiv)
+        stackOpSubView2.addArrangedSubview(opButtonSum)
+        stackOpSubView2.addArrangedSubview(opButtonMul)
         
-        stackSubView4.addArrangedSubview(empty1)
+        stackSubView3.addArrangedSubview(numButton1)
+        stackSubView3.addArrangedSubview(numButton2)
+        stackSubView3.addArrangedSubview(numButton3)
+        
+        stackOpSubView3.addArrangedSubview(opButtonDif)
+        stackOpSubView3.addArrangedSubview(opButtonDiv)
+        
+//        stackSubView4.addArrangedSubview(empty1)
         stackSubView4.addArrangedSubview(numButton0)
-        stackSubView4.addArrangedSubview(empty2)
-        stackSubView4.addArrangedSubview(opButtonEq)
-        stackSubView4.addArrangedSubview(empty3)
+//        stackSubView4.addArrangedSubview(empty2)
+        stackOpSubView4.addArrangedSubview(opButtonEq)
+//        stackSubView4.addArrangedSubview(empty3)
         
-//        stackNumView.addArrangedSubview(stackSubView1)
-//        stackNumView.addArrangedSubview(stackSubView2)
-//        stackNumView.addArrangedSubview(stackSubView3)
-//        stackNumView.addArrangedSubview(stackSubView4)
+        stackNumView.addArrangedSubview(stackSubView1)
+        stackNumView.addArrangedSubview(stackSubView2)
+        stackNumView.addArrangedSubview(stackSubView3)
+        stackNumView.addArrangedSubview(stackSubView4)
+        
+        stackOpView.addArrangedSubview(stackOpSubView1)
+        stackOpView.addArrangedSubview(stackOpSubView2)
+        stackOpView.addArrangedSubview(stackOpSubView3)
+        stackOpView.addArrangedSubview(stackOpSubView4)
+        
+        buttonView.addArrangedSubview(stackNumView)
+        buttonView.addArrangedSubview(stackOpView)
     }
     
     override func viewDidLoad() {
@@ -232,26 +361,18 @@ class ViewController: UIViewController {
         
         view.addSubview(stackView)
         stackView.addArrangedSubview(result)
-//        stackView.addArrangedSubview(stackNumView)
-        stackView.addArrangedSubview(stackSubView1)
-        stackView.addArrangedSubview(stackSubView2)
-        stackView.addArrangedSubview(stackSubView3)
-        stackView.addArrangedSubview(stackSubView4)
+        stackView.addArrangedSubview(buttonView)
+//        stackView.addArrangedSubview(stackSubView1)
+//        stackView.addArrangedSubview(stackSubView2)
+//        stackView.addArrangedSubview(stackSubView3)
+//        stackView.addArrangedSubview(stackSubView4)
         
         view.backgroundColor = UIColor.darkGray
         stackView.translatesAutoresizingMaskIntoConstraints = false
                     
-        stackView.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.9).isActive = true
         stackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        if UIDevice.current.orientation.isLandscape {
-            print("Landscape")
-        } else {
-            print("Portrait")
-        }
     }
 }
