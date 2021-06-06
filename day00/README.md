@@ -1,2 +1,2 @@
 # Swift-piscine DAY-00
-![Subject](d00.en.pdf)
+![Subject](https://github.com/LidiaGr/Swift-piscine/blob/main/day00/d00.en.pdf)
