@@ -14,8 +14,8 @@
             filePath = "day00/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "changeLableValue(target:)"
             landmarkType = "7">
          </BreakpointContent>

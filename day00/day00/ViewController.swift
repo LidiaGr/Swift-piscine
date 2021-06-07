@@ -40,11 +40,11 @@ class ViewController: UIViewController {
    private var opButtonEq  : UIButton { createButton(value: "=",   bgColor: UIColor.systemOrange, textColor: UIColor.black) }
    
    fileprivate func createButton(value: String, bgColor: UIColor, textColor: UIColor) -> UIButton {
-      let button = UIButton() //(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
+      let button = UIButton()
       button.setTitle(value, for: .normal)
       button.backgroundColor = bgColor
       button.setTitleColor(textColor, for: .normal)
-      //        button.layer.cornerRadius = 5
+      button.layer.cornerRadius = 2
       button.addTarget(self, action: #selector(changeLableValue), for: .touchUpInside)
       
       button.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +87,7 @@ class ViewController: UIViewController {
       return stack
    }()
    
-   fileprivate let stackSubView1: UIStackView = {
+   fileprivate let stackNumSubView1: UIStackView = {
       let stack = UIStackView()
       stack.translatesAutoresizingMaskIntoConstraints = false
       stack.distribution = .fillEqually
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
       return stack
    }()
    
-   fileprivate let stackSubView2: UIStackView = {
+   fileprivate let stackNumSubView2: UIStackView = {
       let stack = UIStackView()
       stack.translatesAutoresizingMaskIntoConstraints = false
       stack.distribution = .fillEqually
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
       return stack
    }()
    
-   fileprivate let stackSubView3: UIStackView = {
+   fileprivate let stackNumSubView3: UIStackView = {
       let stack = UIStackView()
       stack.translatesAutoresizingMaskIntoConstraints = false
       stack.distribution = .fillEqually
@@ -114,7 +114,7 @@ class ViewController: UIViewController {
       return stack
    }()
    
-   fileprivate let stackSubView4: UIStackView = {
+   fileprivate let stackNumSubView4: UIStackView = {
       let stack = UIStackView()
       stack.translatesAutoresizingMaskIntoConstraints = false
       stack.distribution = .fillEqually
@@ -166,19 +166,19 @@ class ViewController: UIViewController {
    }
    
    fileprivate func fillNums() {
-      stackSubView1.addArrangedSubview(numButton7)
-      stackSubView1.addArrangedSubview(numButton8)
-      stackSubView1.addArrangedSubview(numButton9)
+      stackNumSubView1.addArrangedSubview(numButton7)
+      stackNumSubView1.addArrangedSubview(numButton8)
+      stackNumSubView1.addArrangedSubview(numButton9)
       
-      stackSubView2.addArrangedSubview(numButton4)
-      stackSubView2.addArrangedSubview(numButton5)
-      stackSubView2.addArrangedSubview(numButton6)
+      stackNumSubView2.addArrangedSubview(numButton4)
+      stackNumSubView2.addArrangedSubview(numButton5)
+      stackNumSubView2.addArrangedSubview(numButton6)
       
-      stackSubView3.addArrangedSubview(numButton1)
-      stackSubView3.addArrangedSubview(numButton2)
-      stackSubView3.addArrangedSubview(numButton3)
+      stackNumSubView3.addArrangedSubview(numButton1)
+      stackNumSubView3.addArrangedSubview(numButton2)
+      stackNumSubView3.addArrangedSubview(numButton3)
       
-      stackSubView4.addArrangedSubview(numButton0)
+      stackNumSubView4.addArrangedSubview(numButton0)
    }
    
    func fillOperations() {
@@ -204,10 +204,10 @@ class ViewController: UIViewController {
    
    
    func fillNumView() {
-      stackNumView.addArrangedSubview(stackSubView1)
-      stackNumView.addArrangedSubview(stackSubView2)
-      stackNumView.addArrangedSubview(stackSubView3)
-      stackNumView.addArrangedSubview(stackSubView4)
+      stackNumView.addArrangedSubview(stackNumSubView1)
+      stackNumView.addArrangedSubview(stackNumSubView2)
+      stackNumView.addArrangedSubview(stackNumSubView3)
+      stackNumView.addArrangedSubview(stackNumSubView4)
    }
    
    func fillButtonView() {
@@ -325,12 +325,15 @@ class ViewController: UIViewController {
       
       fillStackView()
       
+      //in stackView
       fillLable()
       fillButtonView()
       
-      fillOpView()
+      //in buttonView
       fillNumView()
+      fillOpView()
       
+      //in stackNumView and stackOpView
       fillNums()
       fillOperations()
       
