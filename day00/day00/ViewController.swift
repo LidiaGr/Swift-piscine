@@ -8,7 +8,6 @@
 
 import UIKit
 
-//MARK: Ex04 and Ex05
 class ViewController: UIViewController {
    private let resultLable = UILabel()
    private var input = String();
@@ -256,28 +255,21 @@ class ViewController: UIViewController {
       default:
          break
       }
+      if String(firstArg!).count > 15 {
+         error = true
+      }
       secondArg = nil;
       currentOperation.removeAll()
    }
    
    @objc func changeLableValue(target: UIButton!) {
-      print(target.currentTitle!, separator: " ", terminator: "")
+//      print(target.currentTitle!, separator: " ", terminator: "")
       let val = target.currentTitle!
       
       if val == "AC" {
          handleAC()
          return
       }
-      
-//      if val == "=" {
-//         if secondArg != nil {
-//            makeOperation()
-//            resultLable.text = String(firstArg!)
-//         } else {
-//            currentOperation.removeAll()
-//         }
-//         return
-//      }
       
       if !operationPressed(button: val) {
          input += val
@@ -291,15 +283,6 @@ class ViewController: UIViewController {
                resultLable.text = String(firstArg!)
             }
          }
-//         if val != "NEG" {
-//            if (secondArg == nil) {
-//               if (val != "=") {
-//                  currentOperation = val
-//               }
-//            }
-//            // if val == "=" -> currentOperation.removeAll()
-//            // val == "=" && secondArg -> makeOperation()
-//         }
          
          if !input.isEmpty {
             secondArg = Int(input)
@@ -311,18 +294,25 @@ class ViewController: UIViewController {
          }
          
          if val != "NEG" && val != "=" {
-            if secondArg == nil || currentOperation.isEmpty {
+            if secondArg == nil {
                currentOperation = val
             }
-            print("\nfirstArg: \(firstArg!), operation: \(currentOperation), secondArg: \(secondArg ?? nil)")
          }
          
          if firstArg != nil && secondArg != nil {
-            print("\n firstArg: \(firstArg!), operation: \(currentOperation), secondArg: \(secondArg!)")
+//            print("\n firstArg: \(firstArg!), operation: \(currentOperation), secondArg: \(secondArg!)")
             makeOperation()
-            print("firstArg: \(firstArg!), operation: \(currentOperation), secondArg: \(secondArg ?? nil)")
-            resultLable.text = String(firstArg!)
-            
+            if val != "=" && val != "NEG" {
+               currentOperation = val
+            }
+            if (!error) {
+               resultLable.text = String(firstArg!)
+            } else {
+               error = false
+               handleAC()
+               resultLable.text = "impossible"
+            }
+//            print("firstArg: \(firstArg ?? nil), operation: \(currentOperation), secondArg: \(secondArg ?? nil)")
          }
       }
    
