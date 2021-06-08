@@ -1,4 +1,4 @@
-let colors: [Color] = Color.allColors
+let colors : [Color] = Color.allColors
 let values: [Value] = Value.allValues
 
 for color in colors {

@@ -1,4 +1,4 @@
-public enum Value: Int {
+public enum Value: Int, CaseIterable {
     case ace = 1
     case two = 2
     case three = 3
@@ -13,5 +13,5 @@ public enum Value: Int {
     case queen = 12
     case king = 13
     
-    static let allValues : [Value] = [ ace, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king ]
+    static let allValues: [Value] = Value.allCases
 }
