@@ -20,6 +20,7 @@ class ViewController: UIViewController {
       lable.text = "0"
       lable.textColor = UIColor.white
       lable.textAlignment = .right
+      lable.font = UIFont(name: "Helvetica", size: 40)
       return lable
    }()
    
@@ -38,7 +39,7 @@ class ViewController: UIViewController {
    private var opButtonNeg : UIButton { createOpButton(value: "NEG") }
    private var opButtonSum : UIButton { createOpButton(value: "+"  ) }
    private var opButtonDif : UIButton { createOpButton(value: "-"  ) }
-   private var opButtonMul : UIButton { createOpButton(value: "*"  ) }
+   private var opButtonMul : UIButton { createOpButton(value: "×"  ) }
    private var opButtonDiv : UIButton { createOpButton(value: "/"  ) }
    private var opButtonEq  : UIButton { createOpButton(value: "="  ) }
    
@@ -49,13 +50,14 @@ class ViewController: UIViewController {
       button.setTitleColor(UIColor.white, for: .normal)
       button.layer.cornerRadius = 2
       button.addTarget(self, action: #selector(numButtonPressed), for: .touchUpInside)
+      button.titleLabel?.font = UIFont(name: "Helvetica", size: 25)
       
       button.translatesAutoresizingMaskIntoConstraints = false
       return button
    }
    
    private func createOpButton(value: String) -> UIButton {
-      let button = UIButton()
+      let button = HighlightedButton()
       button.setTitle(value, for: .normal)
       button.backgroundColor = UIColor.systemOrange
       button.setTitleColor(UIColor.black, for: .normal)
@@ -87,7 +89,7 @@ class ViewController: UIViewController {
          firstArg! += secondArg!
       case "-":
          firstArg! -= secondArg!
-      case "*":
+      case "×":
          firstArg! *= secondArg!
       case "/":
          if (secondArg != 0) {
@@ -131,15 +133,15 @@ class ViewController: UIViewController {
       }
    }
    
-   @objc private func numButtonPressed(target: UIButton!) {
+   @objc private func numButtonPressed(_ sender: UIButton) {
       //print(target.currentTitle!, separator: " ", terminator: "")
-      input += target.currentTitle!
+      input += sender.currentTitle!
       resultLable.text = input
    }
    
-   @objc private func opButtonPressed(target: UIButton!) {
+   @objc private func opButtonPressed(_ sender: UIButton) {
       //print(target.currentTitle!, separator: " ", terminator: "")
-      let val = target.currentTitle!
+      let val = sender.currentTitle!
       
       if val == "AC" {
          handleAC()
@@ -342,3 +344,12 @@ fileprivate let stackOpSubView4: UIStackView = {
    stack.spacing = 5
    return stack
 }()
+
+class HighlightedButton: UIButton {
+
+    override var isHighlighted: Bool {
+        didSet {
+         backgroundColor = isHighlighted ? .red : .systemOrange
+        }
+    }
+}
