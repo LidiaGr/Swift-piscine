@@ -1,2 +1,8 @@
 # Swift-piscine DAY-00
-![Subject](https://github.com/LidiaGr/Swift-piscine/blob/main/day00/d00.en.pdf)
+
+Minimalistic simple integer calculator. 
+Protected from overflows over 15 symbols and 0 division.
+
+Created using StackViews and AutoLayuot for every Device even in landscape mode.
+
+
