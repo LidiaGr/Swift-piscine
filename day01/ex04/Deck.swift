@@ -34,9 +34,14 @@ class Deck: NSObject {
         return cards.description
     }
     
-    func draw() -> Card {
-        let tmp : Card = cards.removeFirst()
-        outs.append(tmp)
+    func draw() -> Card? {
+        let tmp: Card?
+        if (!cards.isEmpty) {
+            tmp = cards.removeFirst()
+            outs.append(tmp!)
+        } else {
+            tmp = nil
+        }
         return tmp
     }
     

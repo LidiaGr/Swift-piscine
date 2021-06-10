@@ -16,8 +16,8 @@ print("deck2 sorted after description call = \(deck2.description)")
 print()
 
 print("--- Draw card ---")
-print("Draw one card from sorted deck: \(deck2.draw())")
-print("Draw another card from sorted deck: \(deck2.draw())")
+print("Draw one card from sorted deck: \(String(describing: deck2.draw()))")
+print("Draw another card from sorted deck: \(String(describing: deck2.draw()))")
 print("Outs after draw call = \(deck2.outs)")
 print()
 print("Cards after draw call = \(deck2.cards)")
@@ -28,4 +28,12 @@ let card1 = deck2.outs[0]
 deck2.fold(c: card1)
 print("Disards after fold call = \(deck2.disards)")
 print("Outs after fold call = \(deck2.outs)")
+print()
 
+print("--- Out of Bound ---")
+for _ in 0...50 {
+    deck1.draw()
+}
+deck1.draw() // last element
+deck1.draw() // deck1 is already empty, program does not crash
+print(deck1.description)
