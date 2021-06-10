@@ -349,7 +349,9 @@ class HighlightedButton: UIButton {
 
     override var isHighlighted: Bool {
         didSet {
-         backgroundColor = isHighlighted ? .red : .systemOrange
+         backgroundColor = isHighlighted ? .white : .systemOrange
         }
     }
 }
+
+
