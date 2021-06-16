@@ -41,7 +41,7 @@ class SecondVC: UIViewController {
     
     @objc func done() {
         print("Name: \(nameField.text ?? "")")
-        print("Date: \(datePicker.date)")
+        print("Date: \(datePicker.date.toString())")
         print("Description: \(descriptionField.text ?? "")")
     }
     
@@ -78,10 +78,6 @@ extension SecondVC: UITextFieldDelegate {
         
         stackView.addArrangedSubview(nameField)
     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        print("Name: \(textField.text ?? "")")
-//    }
 }
 
 //MARK: DatePicker
@@ -89,22 +85,8 @@ extension SecondVC {
     func setDatePicker() {
         datePicker.timeZone = NSTimeZone.local
         datePicker.minimumDate = Date()
-        datePicker.addTarget(self, action: #selector(datePickerValueChanged(_:)), for: .valueChanged)
         
         stackView.addArrangedSubview(datePicker)
-    }
-    
-    @objc func datePickerValueChanged(_ sender: UIDatePicker){
-        // Create date formatter
-        let dateFormatter: DateFormatter = DateFormatter()
-
-        // Set date format
-        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a"
-
-        // Apply date format
-        let selectedDate: String = dateFormatter.string(from: sender.date)
-
-//        print("Selected date: \(selectedDate)")
     }
 }
 
@@ -130,9 +112,4 @@ extension SecondVC:  UITextViewDelegate {
         }
         return true
     }
-    
-//    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-//        print("Decription: \(textView.text ?? "")")
-//        return true
-//    }
 }

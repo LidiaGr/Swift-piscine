@@ -9,8 +9,8 @@
 import UIKit
 
 struct Character {
-	let name : String?
+	let name : String
 	let description : String?
-	let date : String?
+	let date : String
 }
 

@@ -57,7 +57,7 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let theCharacter = allCharacters[indexPath.row]
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel!.text = "\(theCharacter.name!)\n\(theCharacter.date!)\n\(theCharacter.description!)"
+        cell.textLabel!.text = "\(theCharacter.name)\n\(theCharacter.date)\n\(theCharacter.description!)"
         return cell
     }
 }
