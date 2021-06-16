@@ -9,14 +9,19 @@
 import UIKit
 
 class CharacterAPI {
-	static func getCharacters() -> [Character] {
-		let allCharacters = [
+    private static var allCharacters = [
             Character(name: "Ramsay Bolton", description: String("eaten by his own hounds"), date: Date("10/06/18 22:40").toString()),
             Character(name: "Joffrey Baratheon", description: String("poisoned at own wedding"), date: Date("04/02/18 12:34").toString()),
             Character(name: "The Night King", description: String("stabbed with a Valyrian steel dagger"), date: Date("08/03/18 19:00").toString())
-		]
+        ]
+    
+	static func getCharacters() -> [Character] {
 		return allCharacters
 	}
+    
+    static func pushCharacter(new: Character) {
+        allCharacters.append(new)
+    }
 }
 
 extension Date {

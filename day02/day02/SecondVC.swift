@@ -43,6 +43,17 @@ class SecondVC: UIViewController {
         print("Name: \(nameField.text ?? "")")
         print("Date: \(datePicker.date.toString())")
         print("Description: \(descriptionField.text ?? "")")
+        
+        if !nameField.text!.isEmpty {
+            let newCharacter = Character(name: nameField.text!, description: descriptionField.text ?? "", date: datePicker.date.toString())
+            CharacterAPI.pushCharacter(new: newCharacter)
+        }
+        
+//        for character in CharacterAPI.getCharacters() {
+//            print(character.name)
+//        }
+        
+        navigationController?.popViewController(animated: false)
     }
     
     override func didReceiveMemoryWarning() {

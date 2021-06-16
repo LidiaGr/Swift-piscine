@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    let tableView = UITableView()
     var allCharacters = CharacterAPI.getCharacters()
     
     override func viewDidLoad() {
@@ -33,7 +33,6 @@ class ViewController: UIViewController {
     }
     
     func setupTableView() {
-        let tableView = UITableView()
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -43,11 +42,12 @@ class ViewController: UIViewController {
         tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allCharacters.count
@@ -60,5 +60,17 @@ extension ViewController: UITableViewDataSource {
         cell.textLabel!.text = "\(theCharacter.name)\n\(theCharacter.date)\n\(theCharacter.description!)"
         return cell
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("here")
+        
+        for character in CharacterAPI.getCharacters() {
+            print(character.name)
+        }
+        
+        tableView.reloadData()
+    }
 }
 
+    
