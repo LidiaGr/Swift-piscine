@@ -6,6 +6,8 @@ Day00
   - StackView   
   - AutoLayuot
   - Constraints
+  - UIButton
+  - UILabel
 
 Day01 
 - Classic 52 Card Game logic
@@ -19,3 +21,6 @@ Day02
   - TableView
   - NavgationController
   - NavigationBar
+  - UITextField
+  - UITextView
+  - UIDatePicker
