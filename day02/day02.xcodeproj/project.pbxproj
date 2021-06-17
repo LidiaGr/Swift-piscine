@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02CEB06A267BD86C00AA2436 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02CEB069267BD86C00AA2436 /* CharacterTableViewCell.swift */; };
 		02EAA95D2678B0FF0027A20A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EAA95C2678B0FF0027A20A /* AppDelegate.swift */; };
 		02EAA95F2678B0FF0027A20A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EAA95E2678B0FF0027A20A /* SceneDelegate.swift */; };
 		02EAA9612678B0FF0027A20A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02EAA9602678B0FF0027A20A /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		02CEB069267BD86C00AA2436 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
 		02EAA9592678B0FF0027A20A /* day02.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = day02.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02EAA95C2678B0FF0027A20A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02EAA95E2678B0FF0027A20A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				02EAA9672678B1010027A20A /* LaunchScreen.storyboard */,
 				02EAA96A2678B1010027A20A /* Info.plist */,
 				02EAA9782678C3500027A20A /* SecondVC.swift */,
+				02CEB069267BD86C00AA2436 /* CharacterTableViewCell.swift */,
 			);
 			path = day02;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02EAA9722678BEB90027A20A /* CharacterAPI.swift in Sources */,
+				02CEB06A267BD86C00AA2436 /* CharacterTableViewCell.swift in Sources */,
 				02EAA9612678B0FF0027A20A /* ViewController.swift in Sources */,
 				02EAA9732678BEB90027A20A /* Character.swift in Sources */,
 				02EAA95D2678B0FF0027A20A /* AppDelegate.swift in Sources */,
