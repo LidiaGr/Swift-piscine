@@ -49,10 +49,6 @@ class SecondVC: UIViewController {
             CharacterAPI.pushCharacter(new: newCharacter)
         }
         
-//        for character in CharacterAPI.getCharacters() {
-//            print(character.name)
-//        }
-        
         navigationController?.popViewController(animated: false)
     }
     
@@ -62,12 +58,11 @@ class SecondVC: UIViewController {
     }
 }
 
-
 //MARK: StackView
 extension SecondVC {
     func setStackView() {
         view.addSubview(stackView)
-        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
         stackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor).isActive = true
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
@@ -78,8 +73,8 @@ extension SecondVC {
 extension SecondVC: UITextFieldDelegate {
     func setNameField() {
         nameField.placeholder = "Name"
+        nameField.textAlignment = .center
         nameField.font = UIFont.systemFont(ofSize: 20)
-        nameField.borderStyle = UITextField.BorderStyle.roundedRect
         nameField.autocorrectionType = UITextAutocorrectionType.no
         nameField.keyboardType = UIKeyboardType.default
         nameField.returnKeyType = UIReturnKeyType.done
@@ -96,6 +91,11 @@ extension SecondVC {
     func setDatePicker() {
         datePicker.timeZone = NSTimeZone.local
         datePicker.minimumDate = Date()
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        } else {
+            // Fallback on earlier versions
+        }
         
         stackView.addArrangedSubview(datePicker)
     }
@@ -105,6 +105,7 @@ extension SecondVC {
 extension SecondVC:  UITextViewDelegate {
     func setDescriptionField() {
         descriptionField.text = "Description"
+        descriptionField.textAlignment = .center
         descriptionField.font = UIFont.systemFont(ofSize: 20)
         descriptionField.backgroundColor = .white;
         descriptionField.textColor = .lightGray;

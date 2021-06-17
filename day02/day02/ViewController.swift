@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
     let tableView = UITableView()
-    var allCharacters = CharacterAPI.getCharacters()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,10 +49,11 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allCharacters.count
+        return CharacterAPI.getCharacters().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let allCharacters = CharacterAPI.getCharacters()
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let theCharacter = allCharacters[indexPath.row]
         cell.textLabel?.numberOfLines = 0
@@ -63,12 +63,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("here")
-        
-        for character in CharacterAPI.getCharacters() {
-            print(character.name)
-        }
-        
         tableView.reloadData()
     }
 }
