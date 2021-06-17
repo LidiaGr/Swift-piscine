@@ -5,5 +5,4 @@ Minimalistic DeathNote App
 - NavigationController(add buttons with actions: push, pop )
 - Self-Sizing Cells in TableView
 
-![ScreenShot](TableView.png)
-![ScreenShot](CreateView.png)
+<img src="https://github.com/LidiaGr/Swift_piscine/blob/main/day02/TableView.png" width="400" /> <img src="https://github.com/LidiaGr/Swift_piscine/blob/main/day02/CreateView.png" width="400" />
