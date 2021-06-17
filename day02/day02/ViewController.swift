@@ -42,7 +42,7 @@ class ViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CharacterTableViewCell.self, forCellReuseIdentifier: "cell")
     }
 }
 
@@ -54,11 +54,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let allCharacters = CharacterAPI.getCharacters()
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CharacterTableViewCell
         let theCharacter = allCharacters[indexPath.row]
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel!.text = "\(theCharacter.name)\n\(theCharacter.date)\n\(theCharacter.description!)"
+        cell.nameLabel.text = "\(theCharacter.name)"
+        cell.deathDate.text = "\(theCharacter.date)"
+        cell.deathDescription.numberOfLines = 0
+        cell.deathDescription.text = "\(theCharacter.description ?? "")"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
     
     override func viewWillAppear(_ animated: Bool) {
