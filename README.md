@@ -1,5 +1,5 @@
 # Swift-piscine
-### Learning projects swift programmatically:
+### Learning projects - swift programmatically:
 
 Day00 
 - [Calculator](https://github.com/LidiaGr/Swift-piscine/tree/main/day00) App   
