@@ -18,9 +18,8 @@ Day01
 
 Day02
 - DeathNote App
-  - TableView
-  - NavgationController
-  - NavigationBar
+  - TableView, Self-Sizing Custom Table Cells
+  - NavgationController, NavigationBar, NavigationItem
   - UITextField
   - UITextView
   - UIDatePicker
