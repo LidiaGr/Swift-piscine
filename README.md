@@ -17,7 +17,7 @@ Day01
   - Algo: closures
 
 Day02
-- DeathNote App
+- [DeathNote](https://github.com/LidiaGr/Swift_piscine/blob/main/day02) App
   - TableView, Self-Sizing Custom Table Cells
   - NavgationController, NavigationBar, NavigationItem
   - UITextField
