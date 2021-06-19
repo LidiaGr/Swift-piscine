@@ -78,6 +78,9 @@ extension ViewController: UICollectionViewDataSource {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCollectionViewCell
         
         myCell.backgroundView = myCell.tImage
+        myCell.addSubview(myCell.spinner)
+        myCell.spinner.centerYAnchor.constraint(equalTo: myCell.centerYAnchor).isActive = true
+        myCell.spinner.centerXAnchor.constraint(equalTo: myCell.centerXAnchor).isActive = true
         
         let section = indexPath.section
         let row = indexPath.row

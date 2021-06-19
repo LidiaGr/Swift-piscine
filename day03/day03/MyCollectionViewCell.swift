@@ -8,13 +8,19 @@
 import UIKit
 
 class MyCollectionViewCell: UICollectionViewCell {
-    
     var tImage: UIImageView! = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .gray
+        imageView.backgroundColor = .lightGray
         return imageView
     }()
-//    var spinner: UIActivityIndicatorView!
+    
+    var spinner: UIActivityIndicatorView! = {
+        let loginSpinner = UIActivityIndicatorView(style: .medium)
+        loginSpinner.color = .white
+        loginSpinner.translatesAutoresizingMaskIntoConstraints = false
+        loginSpinner.hidesWhenStopped = true
+        return loginSpinner
+    }()
     
     
     // MARK: - Public API
@@ -27,7 +33,7 @@ class MyCollectionViewCell: UICollectionViewCell {
     
     private func updateUI() {
         if let url = imageURL {
-//            spinner?.startAnimating()
+            spinner?.startAnimating()
             DispatchQueue.global(qos: .utility).async {
                 let contentsOfURL = try? Data(contentsOf: url)
                 DispatchQueue.main.async {
@@ -35,7 +41,7 @@ class MyCollectionViewCell: UICollectionViewCell {
                         if let imageData = contentsOfURL {
                             self.tImage?.image = UIImage(data: imageData)
                         }
-//                        self.spinner?.stopAnimating()
+                        self.spinner?.stopAnimating()
                     }
                 }
             }
@@ -43,23 +49,23 @@ class MyCollectionViewCell: UICollectionViewCell {
     }
     
     
-//    private func updateUI() {
-////          print("fetching image")
-//          if let url = imageURL {
-//
-//              let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
-//                  guard let data = data else {
-//                      return
-//                  }
-//                  // maybe try dispatch to main
-//                  DispatchQueue.main.async {
-//                      self.tImage.image = UIImage(data: data)
-//                  }
-//              }
-//              task.resume()
-//          }
-//      }
-
+    //    private func updateUI() {
+    ////          print("fetching image")
+    //          if let url = imageURL {
+    //
+    //              let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
+    //                  guard let data = data else {
+    //                      return
+    //                  }
+    //                  // maybe try dispatch to main
+    //                  DispatchQueue.main.async {
+    //                      self.tImage.image = UIImage(data: data)
+    //                  }
+    //              }
+    //              task.resume()
+    //          }
+    //      }
+    
 }
 
 
