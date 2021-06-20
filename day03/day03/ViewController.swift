@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     private var images = [UIImage]()
     private var myCollectionView: UICollectionView
     private let ImagesURI: [String] = [
+        "https://www.nasa.gov/sites/default/files/thumbnails/image/curiosity_selfie1.jpg",
         "https://apod.nasa.gov/apod/image/2106/IMG_3915.jpg",
         "https://www.nasa.gov/sites/default/files/iss036e009405-full.jpg",
         "https://eoimages.gsfc.nasa.gov/images/imagerecords/148000/148447/shasta_oli_2019194_lrg.jpg",
@@ -76,16 +77,14 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCollectionViewCell
-        
+                
         myCell.backgroundView = myCell.tImage
         myCell.addSubview(myCell.spinner)
         myCell.spinner.centerYAnchor.constraint(equalTo: myCell.centerYAnchor).isActive = true
         myCell.spinner.centerXAnchor.constraint(equalTo: myCell.centerXAnchor).isActive = true
+        myCell.delegate = self
         
-        let section = indexPath.section
-        let row = indexPath.row
-        let imageId = section + row + section
-        
+        let imageId =  indexPath.section * 2 + indexPath.row
         myCell.imageURL = URL(string: ImagesURI[imageId])
         
         return myCell
