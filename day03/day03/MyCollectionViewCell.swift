@@ -20,7 +20,7 @@ class MyCollectionViewCell: UICollectionViewCell {
     
     var spinner: UIActivityIndicatorView! = {
         let loginSpinner = UIActivityIndicatorView(style: .medium)
-        loginSpinner.color = .white
+        loginSpinner.color = .systemBackground
         loginSpinner.translatesAutoresizingMaskIntoConstraints = false
         loginSpinner.hidesWhenStopped = true
         return loginSpinner

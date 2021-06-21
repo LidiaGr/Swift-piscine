@@ -25,14 +25,17 @@ class SecondVC: UIViewController {
     }
     
     override func viewDidLoad() {
+        view.backgroundColor = .systemBackground
         view.addSubview(scrollView)
         setupScrollViewConstaraints()
         
         imageView.image = cell.tImage.image
         scrollView.contentSize = imageView.bounds.size
+        scrollView.delegate = self
         
         scrollView.addSubview(imageView)
         setupImageViewConstraints()
+        scrollView.layoutSubviews()
     }
     
     
@@ -51,6 +54,25 @@ class SecondVC: UIViewController {
         imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
     }
+    
+    override func viewWillLayoutSubviews() {
+      super.viewWillLayoutSubviews()
+      updateMinZoomScaleForSize(view.bounds.size)
+    }
 }
 
+extension SecondVC: UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return imageView
+    }
+    
+    func updateMinZoomScaleForSize(_ size: CGSize) {
+        let widthScale = size.width / imageView.bounds.width
+        let heightScale = imageView.bounds.height
+        let minScale = min(widthScale, heightScale)
+        
+        scrollView.minimumZoomScale = minScale
+        scrollView.zoomScale = minScale
+    }
+}
 
