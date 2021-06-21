@@ -48,6 +48,11 @@ class MyCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.tImage.image = nil
+    }
+    
     private func updateUI() {
         if let url = imageURL {
             spinner?.startAnimating()
