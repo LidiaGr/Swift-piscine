@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		022E34E02680AFAC00F5467A /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022E34DF2680AFAC00F5467A /* SecondVC.swift */; };
 		02867B20267CB0530080FEB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02867B1F267CB0530080FEB8 /* AppDelegate.swift */; };
 		02867B22267CB0530080FEB8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02867B21267CB0530080FEB8 /* SceneDelegate.swift */; };
 		02867B24267CB0530080FEB8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02867B23267CB0530080FEB8 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		022E34DF2680AFAC00F5467A /* SecondVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondVC.swift; sourceTree = "<group>"; };
 		02867B1C267CB0530080FEB8 /* day03.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = day03.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02867B1F267CB0530080FEB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02867B21267CB0530080FEB8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				02867B28267CB0540080FEB8 /* Assets.xcassets */,
 				02867B2A267CB0540080FEB8 /* LaunchScreen.storyboard */,
 				02867B2D267CB0540080FEB8 /* Info.plist */,
+				022E34DF2680AFAC00F5467A /* SecondVC.swift */,
 			);
 			path = day03;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02867B24267CB0530080FEB8 /* ViewController.swift in Sources */,
+				022E34E02680AFAC00F5467A /* SecondVC.swift in Sources */,
 				02867B20267CB0530080FEB8 /* AppDelegate.swift in Sources */,
 				02D1BB81267DE968001D72C5 /* MyCollectionViewCell.swift in Sources */,
 				02867B22267CB0530080FEB8 /* SceneDelegate.swift in Sources */,
