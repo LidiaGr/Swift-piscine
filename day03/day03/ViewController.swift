@@ -57,20 +57,15 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: UICollectionViewDataSource {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return ImagesURI.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCollectionViewCell
         
         if myCell.imageURL == nil {
-            let imageId =  indexPath.section * 2 + indexPath.row
-            myCell.imageURL = URL(string: ImagesURI[imageId])
+            myCell.imageURL = URL(string: ImagesURI[indexPath.item])
         }
         return myCell
     }
