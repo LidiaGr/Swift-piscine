@@ -69,12 +69,6 @@ extension ViewController: UICollectionViewDataSource {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCollectionViewCell
         
         if myCell.imageURL == nil {
-            myCell.backgroundView = myCell.tImage
-            myCell.addSubview(myCell.spinner)
-            myCell.spinner.centerYAnchor.constraint(equalTo: myCell.centerYAnchor).isActive = true
-            myCell.spinner.centerXAnchor.constraint(equalTo: myCell.centerXAnchor).isActive = true
-            myCell.delegate = self
-            
             let imageId =  indexPath.section * 2 + indexPath.row
             myCell.imageURL = URL(string: ImagesURI[imageId])
         }
