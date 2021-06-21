@@ -9,11 +9,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var flag = Bool()
-    private var images = [UIImage]()
     private var myCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let ImagesURI: [String] = [
-//        "https://www.nasa.gov/sites/default/files/thumbnails/image/curiosity_selfie1.jpg",
+//        "https://www.nasa.gov/sites/default/files/thumbnails/image/curiosity_selfie1.jpg", // invalid adress to test alert
         "https://www.media.inaf.it/wp-content/uploads/2015/11/international-space-station-space-hd-wallpaper-1920x1200-3511.jpg",
         "https://loveopium.ru/content/2012/12/marble/04big.jpg",
         "https://s.yimg.com/os/creatr-images/2020-02/d5df5420-5945-11ea-9777-5eaf09879548",
@@ -71,7 +69,7 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("User tapped on item \(indexPath.section) \(indexPath.row)")
+        print("User tapped on item \(indexPath.item)")
         let cell = myCollectionView.cellForItem(at: indexPath) as! MyCollectionViewCell
         let secondVC = SecondVC(cell: cell)
         
