@@ -15,6 +15,7 @@ class MyCollectionViewCell: UICollectionViewCell {
         imageView.backgroundColor = .lightGray
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.image = nil
         return imageView
     }()
     

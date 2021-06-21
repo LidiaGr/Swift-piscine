@@ -23,12 +23,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Images"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         myCollectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: "MyCell")
         
         view.addSubview(myCollectionView)
-        myCollectionView.backgroundColor = .white
+        myCollectionView.backgroundColor = .systemBackground
         
         myCollectionView.translatesAutoresizingMaskIntoConstraints = false
         myCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -67,16 +67,17 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCollectionViewCell
-                
-        myCell.backgroundView = myCell.tImage
-        myCell.addSubview(myCell.spinner)
-        myCell.spinner.centerYAnchor.constraint(equalTo: myCell.centerYAnchor).isActive = true
-        myCell.spinner.centerXAnchor.constraint(equalTo: myCell.centerXAnchor).isActive = true
-        myCell.delegate = self
         
-        let imageId =  indexPath.section * 2 + indexPath.row
-        myCell.imageURL = URL(string: ImagesURI[imageId])
-        
+        if myCell.imageURL == nil {
+            myCell.backgroundView = myCell.tImage
+            myCell.addSubview(myCell.spinner)
+            myCell.spinner.centerYAnchor.constraint(equalTo: myCell.centerYAnchor).isActive = true
+            myCell.spinner.centerXAnchor.constraint(equalTo: myCell.centerXAnchor).isActive = true
+            myCell.delegate = self
+            
+            let imageId =  indexPath.section * 2 + indexPath.row
+            myCell.imageURL = URL(string: ImagesURI[imageId])
+        }
         return myCell
     }
 }
