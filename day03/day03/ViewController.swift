@@ -14,11 +14,12 @@ class ViewController: UIViewController {
     private var myCollectionView: UICollectionView
     private let ImagesURI: [String] = [
 //        "https://www.nasa.gov/sites/default/files/thumbnails/image/curiosity_selfie1.jpg",
-        "https://static.life.ru/posts/2018/02/1090260/6e519baf297c194d2c4eaa707b38a606.jpg",
+        "https://www.media.inaf.it/wp-content/uploads/2015/11/international-space-station-space-hd-wallpaper-1920x1200-3511.jpg",
         "https://loveopium.ru/content/2012/12/marble/04big.jpg",
         "https://s.yimg.com/os/creatr-images/2020-02/d5df5420-5945-11ea-9777-5eaf09879548",
         "https://assets.hongkiat.com/uploads/ww-falling-stars-meteors-wallpapers/4k/original/08.jpg"
     ]
+    private var scrollView = UIScrollView()
     
     init() {
         myCollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -93,25 +94,43 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("User tapped on item \(indexPath.section) \(indexPath.row)")
-        let secondVC = UIViewController()
-        secondVC.view.backgroundColor = .white
-        
+    func setupScrollViewConstaraints(_ secondVC: UIViewController) {
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.topAnchor.constraint(equalTo: secondVC.view.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: secondVC.view.bottomAnchor).isActive = true
+        scrollView.leadingAnchor.constraint(equalTo: secondVC.view.leadingAnchor).isActive = true
+        scrollView.trailingAnchor.constraint(equalTo: secondVC.view.trailingAnchor).isActive = true
+    }
+    
+    func createImage(indexPath: IndexPath) -> UIImageView {
         let newImageView = UIImageView()
         let cell = myCollectionView.cellForItem(at: indexPath) as! MyCollectionViewCell
         newImageView.image = cell.tImage.image
         newImageView.contentMode = .scaleAspectFill
-        
-        secondVC.view.addSubview(newImageView)
-        newImageView.backgroundColor = .red
+        return newImageView
+    }
+    
+    func setupImageViewConstraints(_ newImageView: UIImageView) {
         newImageView.translatesAutoresizingMaskIntoConstraints = false
-        newImageView.topAnchor.constraint(equalTo: secondVC.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        newImageView.bottomAnchor.constraint(equalTo: secondVC.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        newImageView.leadingAnchor.constraint(equalTo: secondVC.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        newImageView.trailingAnchor.constraint(equalTo: secondVC.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-            
+        newImageView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        newImageView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        newImageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
+        newImageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("User tapped on item \(indexPath.section) \(indexPath.row)")
+        let secondVC = UIViewController()
         
+        secondVC.view.addSubview(scrollView)
+        setupScrollViewConstaraints(secondVC)
+        
+        let newImageView = createImage(indexPath: indexPath)
+        scrollView.contentSize = newImageView.bounds.size
+        
+        scrollView.addSubview(newImageView)
+        setupImageViewConstraints(newImageView)
+            
         navigationController?.pushViewController(secondVC, animated: false)
     }
 }
