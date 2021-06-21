@@ -13,6 +13,7 @@ class MyCollectionViewCell: UICollectionViewCell {
     var tImage: UIImageView! = {
         let imageView = UIImageView()
         imageView.backgroundColor = .lightGray
+        imageView.contentMode = .scaleToFill
         return imageView
     }()
     

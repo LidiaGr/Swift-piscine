@@ -13,11 +13,11 @@ class ViewController: UIViewController {
     private var images = [UIImage]()
     private var myCollectionView: UICollectionView
     private let ImagesURI: [String] = [
-        "https://www.nasa.gov/sites/default/files/thumbnails/image/curiosity_selfie1.jpg",
-        "https://apod.nasa.gov/apod/image/2106/IMG_3915.jpg",
-        "https://www.nasa.gov/sites/default/files/iss036e009405-full.jpg",
-        "https://eoimages.gsfc.nasa.gov/images/imagerecords/148000/148447/shasta_oli_2019194_lrg.jpg",
-        "https://www.nasa.gov/sites/default/files/thumbnails/image/arp299.jpg"
+//        "https://www.nasa.gov/sites/default/files/thumbnails/image/curiosity_selfie1.jpg",
+        "https://static.life.ru/posts/2018/02/1090260/6e519baf297c194d2c4eaa707b38a606.jpg",
+        "https://loveopium.ru/content/2012/12/marble/04big.jpg",
+        "https://s.yimg.com/os/creatr-images/2020-02/d5df5420-5945-11ea-9777-5eaf09879548",
+        "https://assets.hongkiat.com/uploads/ww-falling-stars-meteors-wallpapers/4k/original/08.jpg"
     ]
     
     init() {
@@ -95,6 +95,24 @@ extension ViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("User tapped on item \(indexPath.section) \(indexPath.row)")
+        let secondVC = UIViewController()
+        secondVC.view.backgroundColor = .white
+        
+        let newImageView = UIImageView()
+        let cell = myCollectionView.cellForItem(at: indexPath) as! MyCollectionViewCell
+        newImageView.image = cell.tImage.image
+        newImageView.contentMode = .scaleAspectFill
+        
+        secondVC.view.addSubview(newImageView)
+        newImageView.backgroundColor = .red
+        newImageView.translatesAutoresizingMaskIntoConstraints = false
+        newImageView.topAnchor.constraint(equalTo: secondVC.view.safeAreaLayoutGuide.topAnchor).isActive = true
+        newImageView.bottomAnchor.constraint(equalTo: secondVC.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        newImageView.leadingAnchor.constraint(equalTo: secondVC.view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        newImageView.trailingAnchor.constraint(equalTo: secondVC.view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+            
+        
+        navigationController?.pushViewController(secondVC, animated: false)
     }
 }
 
