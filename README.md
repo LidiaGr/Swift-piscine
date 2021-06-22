@@ -1,5 +1,6 @@
 # Swift-piscine
 ### Learning projects - swift programmatically:
+All projects are appropriate for all devices even in landscape mode.
 
 Day00 
 - [Calculator](https://github.com/LidiaGr/Swift-piscine/tree/main/day00) App   
@@ -23,3 +24,11 @@ Day02
   - UITextField
   - UITextView
   - UIDatePicker
+
+Day03 
+- [Photos](https://github.com/LidiaGr/Swift_piscine/tree/main/day03) App
+  - CollectionView
+  - Multithreads
+  - Alerts
+  - ScrollView
+  - Zoom
