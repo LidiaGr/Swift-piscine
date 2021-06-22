@@ -1,6 +1,6 @@
 # Swift-piscine DAY-03
 
-## Photo / Gallerie App
+## Photo / Gallery App
 Simple Application that downloads pictures from the Internet using Threads.
 Application send Alert, when download failed.
 Pictures can be shown fully-sized, zommed and scrolled.
