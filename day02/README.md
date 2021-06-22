@@ -1,6 +1,7 @@
 # Swift-piscine DAY-02
 
-## DeathNote App (sort of Contacts App)
+## Notes App
+DeathNote App. It is posiiple to add characters with death description and date only since current date and time. 
 
 Learned:
 - TableView, Self-Sizing Custom Table Cells
