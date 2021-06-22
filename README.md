@@ -9,7 +9,7 @@ Day01
 - Swift Basics
 
 Day02
-- [DeathNote](https://github.com/LidiaGr/Swift_piscine/blob/main/day02) App (sort of Contacts App)
+- [Notes](https://github.com/LidiaGr/Swift_piscine/blob/main/day02) App
 
 Day03 
 - [Photos](https://github.com/LidiaGr/Swift_piscine/tree/main/day03) App
