@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol APITwitterDelegate {
-    func processTweets(tweet: Tweet)
+protocol APIIntra42Delegate: AnyObject {
+    func processData(visit: [Visit])
     func errorOccured(error: NSError)
 }
