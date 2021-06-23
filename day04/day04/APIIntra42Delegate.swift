@@ -8,6 +8,6 @@
 import Foundation
 
 protocol APIIntra42Delegate: AnyObject {
-    func processData(visit: [Visit])
+    func processData(visits: [Visit])
     func errorOccured(error: NSError)
 }

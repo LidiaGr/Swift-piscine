@@ -7,10 +7,10 @@
 
 struct Visit: CustomStringConvertible {
     let host: String
-    let end_at: String
     let begin_at: String
+    let end_at: String
     
     var description: String {
-        return "\(host): \(begin_at) - \(end_at)"
+        return "\(host):\n\(begin_at) - \(end_at)"
     }
 }

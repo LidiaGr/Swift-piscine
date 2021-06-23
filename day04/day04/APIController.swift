@@ -17,20 +17,30 @@ class APIController {
     }
     
     func searchVisits(username: String) {
-        let request = URL(string: "https://api.intra.42.fr/v2/users/\(username)/locations?per_page=100".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+        let url = URL(string: "https://api.intra.42.fr/v2/users/\(username)/locations?per_page=100".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
         
-        var url = URLRequest(url: request!)
-        url.httpMethod = "GET"
-        url.setValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
         
         let session = URLSession.shared
-        let task = session.dataTask(with: url) { (data, response, error) in
+        let task = session.dataTask(with: request) { (data, response, error) in
             if let err = error {
                 self.delegate?.errorOccured(error: err as NSError)
             } else if let recievedData = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: recievedData)
-                    print(json)
+                    guard let theArray = json as? NSArray else { return }
+                    var visits: [Visit] = []
+                    for theElement in theArray {
+                        guard let theDecodedElement = theElement as? NSDictionary,
+                              let hostId = theDecodedElement["host"] as? String,
+                              let beginAt = theDecodedElement["begin_at"] as? String,
+                              let endAt = theDecodedElement["end_at"] as? String
+                        else { continue }
+                        visits.append(Visit(host: hostId, begin_at: beginAt, end_at: endAt))
+                    }
+                    self.delegate?.processData(visits: visits)
                 } catch let err {
                     self.delegate?.errorOccured(error: err as NSError)
                 }
