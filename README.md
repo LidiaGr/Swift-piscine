@@ -1,25 +1,12 @@
 # Swift-piscine
 ### Learning projects - swift programmatically:
+All projects are appropriate for all devices even in landscape mode.
 
-Day00 
-- [Calculator](https://github.com/LidiaGr/Swift-piscine/tree/main/day00) App   
-  - StackView   
-  - AutoLayuot
-  - Constraints
-  - UIButton
-  - UILabel
+- Day00: [Calculator](https://github.com/LidiaGr/Swift-piscine/tree/main/day00) App   
 
-Day01 
-- Classic 52 Card Game logic
-  - Declarations: var, let, type, weak, optional
-  - Control structures: loop, conditions, if let
-  - Classes: class, func, overload, override, struct, enum, inheritance, extension, mutating
-  - Algo: closures
+- Day01: Swift Basics
 
-Day02
-- [DeathNote](https://github.com/LidiaGr/Swift_piscine/blob/main/day02) App
-  - TableView, Self-Sizing Custom Table Cells
-  - NavgationController, NavigationBar, NavigationItem
-  - UITextField
-  - UITextView
-  - UIDatePicker
+- Day02: [Notes](https://github.com/LidiaGr/Swift_piscine/blob/main/day02) App
+
+- Day03: [Photos](https://github.com/LidiaGr/Swift_piscine/tree/main/day03) App
+
