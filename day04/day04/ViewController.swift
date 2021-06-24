@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        self.title = "Visits"
+        self.title = "Station Sessions History"
         
         getAccessToken()
         setupSearchBar()
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
     }
     
 }
@@ -72,21 +72,43 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CustomCell
         let theVisit = visitsArr[indexPath.row]
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.text = "\(theVisit.description)"
-        //        cell.nameLabel.text = "\(theCharacter.name)"
-        //        cell.deathDate.text = "\(theCharacter.date)"
-        //        cell.deathDescription.numberOfLines = 0
-        //        cell.deathDescription.text = "\(theCharacter.description ?? "")"
+        cell.dateLable.text = "\(theVisit.date)"
+        cell.timeLable.text = "\(theVisit.begin_at) - \(theVisit.end_at)"
+        cell.hostLable.text = "\(theVisit.host)"
         return cell
     }
+}
+
+extension ViewController: APIIntra42Delegate {
+    func processData(visits: [Visit]) {
+        visitsArr = visits
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        super.viewWillAppear(animated)
-    //        tableView.reloadData()
-    //    }
+    func errorOccured(error: NSError) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
+                NSLog(error.localizedDescription)
+            }))
+            self.present(alert, animated: true, completion: nil)
+            print(error)
+        }
+    }
+}
+
+extension ViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = search.searchBar.text?.lowercased() else { return }
+        self.apiController?.searchVisits(username: text)
+    }
 }
 
 extension ViewController {
@@ -100,49 +122,30 @@ extension ViewController {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let session = URLSession.shared
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
             if let err = error {
-                print(err)
-            } else if let recievedData = data {
+                self.errorOccured(error: err as NSError)
+                return
+            }
+            guard let response = response as? HTTPURLResponse,
+                  (200...299).contains(response.statusCode) else {
+                self.errorOccured(error: NSError(domain: "https://api.intra.42.fr/oauth/token", code: (response as! HTTPURLResponse).statusCode , userInfo: nil))
+                return
+            }
+            if let recievedData = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: recievedData) as! Dictionary<String, AnyObject>
                     guard let token = json["access_token"] as? String else { return }
                     self.token = token
                     print(json)
                 } catch let err {
-                    print(err)
+                    self.errorOccured(error: err as NSError)
                 }
             }
-        })
+        }
         
         dataTask.resume()
     }
-}
-
-extension ViewController: APIIntra42Delegate {
-    func processData(visits: [Visit]) {
-        visitsArr = visits
-        DispatchQueue.main.async { [weak self] in
-            self?.tableView.reloadData()
-        }
-    }
-    
-    func errorOccured(error: NSError) {
-        print(error)
-    }
-}
-
-extension ViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
-    func updateSearchResults(for searchController: UISearchController) {
-//        guard let text = searchController.searchBar.text else { return }
-//            print(text)
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let text = search.searchBar.text?.lowercased() else { return }
-        self.apiController?.searchVisits(username: text)
-    }
-
 }
 
 

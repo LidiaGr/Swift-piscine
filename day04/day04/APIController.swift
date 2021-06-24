@@ -27,7 +27,15 @@ class APIController {
         let task = session.dataTask(with: request) { (data, response, error) in
             if let err = error {
                 self.delegate?.errorOccured(error: err as NSError)
-            } else if let recievedData = data {
+                return
+            }
+            guard let response = response as? HTTPURLResponse,
+                  (200...299).contains(response.statusCode) else {
+                print ("alert")
+                self.delegate?.errorOccured(error: NSError(domain: "https://api.intra.42.fr/v2/users/\(username)", code: (response as! HTTPURLResponse).statusCode , userInfo: nil))
+                return
+            }
+            if let recievedData = data {
                 do {
                     let json = try JSONSerialization.jsonObject(with: recievedData)
                     guard let theArray = json as? NSArray else { return }
@@ -38,7 +46,7 @@ class APIController {
                               let beginAt = theDecodedElement["begin_at"] as? String,
                               let endAt = theDecodedElement["end_at"] as? String
                         else { continue }
-                        visits.append(Visit(host: hostId, begin_at: beginAt, end_at: endAt))
+                        visits.append(Visit(host: hostId, begin_at: beginAt.toDate()!.toString(withFormat: "HH:mm"), end_at: endAt.toDate()!.toString(withFormat: "HH:mm"), date: beginAt.toDate()!.toString(withFormat: "d MMMM yyyy EEEE")))
                     }
                     self.delegate?.processData(visits: visits)
                 } catch let err {
@@ -46,6 +54,7 @@ class APIController {
                 }
             }
         }
+        
         task.resume()
     }
 }
