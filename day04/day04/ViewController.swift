@@ -10,29 +10,44 @@ import UIKit
 class ViewController: UIViewController {
     let UID = "be7059d0939c5aa48803d0c69f6372a85794ac39ab90814f338766f9e25c4f4a"
     let SECRET = "27d4796f7fc88b986b6d0052a13560d3719950157344d21456a5bd5016a387ea"
-
+    
     var apiController: APIController?
     var token : String? {
         willSet {
             if newValue != "" {
                 self.apiController = APIController(apiDelegate: self, apiToken: newValue!)
-                self.apiController?.searchVisits(username: "ttarsha")
             }
         }
     }
     
     let tableView = UITableView()
     var visitsArr: [Visit] = []
-    
+    let search = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         self.title = "Visits"
         
-        setupTableView()
         getAccessToken()
+        setupSearchBar()
+        setupTableView()
     }
+    
+    func setupSearchBar() {
+        search.searchResultsUpdater = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.hidesNavigationBarDuringPresentation = false
+        search.searchBar.placeholder = "Enter nickname from intra"
+        search.searchBar.returnKeyType = .done
+        
+        search.searchBar.delegate = self
+        search.delegate = self
+        
+        navigationItem.searchController = search
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
     
     func setupTableView() {
         view.addSubview(tableView)
@@ -47,7 +62,7 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
-
+    
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -61,17 +76,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let theVisit = visitsArr[indexPath.row]
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = "\(theVisit.description)"
-//        cell.nameLabel.text = "\(theCharacter.name)"
-//        cell.deathDate.text = "\(theCharacter.date)"
-//        cell.deathDescription.numberOfLines = 0
-//        cell.deathDescription.text = "\(theCharacter.description ?? "")"
+        //        cell.nameLabel.text = "\(theCharacter.name)"
+        //        cell.deathDate.text = "\(theCharacter.date)"
+        //        cell.deathDescription.numberOfLines = 0
+        //        cell.deathDescription.text = "\(theCharacter.description ?? "")"
         return cell
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        tableView.reloadData()
-//    }
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        super.viewWillAppear(animated)
+    //        tableView.reloadData()
+    //    }
 }
 
 extension ViewController {
@@ -115,6 +130,19 @@ extension ViewController: APIIntra42Delegate {
     func errorOccured(error: NSError) {
         print(error)
     }
+}
+
+extension ViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
+    func updateSearchResults(for searchController: UISearchController) {
+//        guard let text = searchController.searchBar.text else { return }
+//            print(text)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = search.searchBar.text?.lowercased() else { return }
+        self.apiController?.searchVisits(username: text)
+    }
+
 }
 
 
