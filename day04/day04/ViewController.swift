@@ -23,6 +23,13 @@ class ViewController: UIViewController {
     let tableView = UITableView()
     var visitsArr: [Visit] = []
     let search = UISearchController(searchResultsController: nil)
+    var spinner: UIActivityIndicatorView! = {
+        let loginSpinner = UIActivityIndicatorView(style: .large)
+        loginSpinner.color = .black
+        loginSpinner.translatesAutoresizingMaskIntoConstraints = false
+        loginSpinner.hidesWhenStopped = true
+        return loginSpinner
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +68,11 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
+        
+        view.addSubview(spinner)
+        self.spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        self.spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
     }
     
 }
@@ -85,7 +97,11 @@ extension ViewController: APIIntra42Delegate {
     func processData(visits: [Visit]) {
         visitsArr = visits
         DispatchQueue.main.async { [weak self] in
+            if self?.tableView.numberOfRows(inSection: 0) != 0 {
+                self?.tableView.scrollToRow(at: IndexPath(row: 0, section: 0) , at: UITableView.ScrollPosition.top, animated: true)
+            }
             self?.tableView.reloadData()
+            self?.spinner.stopAnimating()
         }
     }
     
@@ -96,6 +112,9 @@ extension ViewController: APIIntra42Delegate {
                 NSLog(error.localizedDescription)
             }))
             self.present(alert, animated: true, completion: nil)
+            self.spinner.stopAnimating()
+            self.visitsArr = []
+            self.tableView.reloadData()
             print(error)
         }
     }
@@ -106,8 +125,17 @@ extension ViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearch
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.spinner?.startAnimating()
         guard let text = search.searchBar.text?.lowercased() else { return }
         self.apiController?.searchVisits(username: text)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        if spinner.isAnimating {
+            self.spinner.stopAnimating()
+        }
+        self.visitsArr = []
+        self.tableView.reloadData()
     }
 }
 
