@@ -10,3 +10,5 @@ All projects are appropriate for all devices even in landscape mode.
 
 - Day03: [Photos](https://github.com/LidiaGr/Swift_piscine/tree/main/day03) App
 
+- Day04: [API](https://github.com/LidiaGr/Swift_piscine/tree/main/day04) App
+
