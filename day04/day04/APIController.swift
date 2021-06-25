@@ -26,13 +26,13 @@ class APIController {
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if let err = error {
-                self.delegate?.errorOccured(error: err as NSError)
+                print(err)
                 return
             }
             guard let response = response as? HTTPURLResponse,
                   (200...299).contains(response.statusCode) else {
-                print ("alert")
-                self.delegate?.errorOccured(error: NSError(domain: "https://api.intra.42.fr/v2/users/\(username)", code: (response as! HTTPURLResponse).statusCode , userInfo: nil))
+                print ("Alert")
+                self.delegate?.errorOccured(error: NSError(domain: "https://api.intra.42.fr/v2/users/\(username)", code: (response as! HTTPURLResponse).statusCode , userInfo: ["username": "\(username)"]))
                 return
             }
             if let recievedData = data {
@@ -50,7 +50,7 @@ class APIController {
                     }
                     self.delegate?.processData(visits: visits)
                 } catch let err {
-                    self.delegate?.errorOccured(error: err as NSError)
+                    print(err)
                 }
             }
         }

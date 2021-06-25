@@ -8,21 +8,26 @@
 import UIKit
 
 class ViewController: UIViewController {
-    let UID = "be7059d0939c5aa48803d0c69f6372a85794ac39ab90814f338766f9e25c4f4a"
-    let SECRET = "27d4796f7fc88b986b6d0052a13560d3719950157344d21456a5bd5016a387ea"
-    
     var apiController: APIController?
+    var visitsArr: [Visit] = []
     var token : String? {
         willSet {
-            if newValue != "" {
-                self.apiController = APIController(apiDelegate: self, apiToken: newValue!)
-            }
+            self.apiController = APIController(apiDelegate: self, apiToken: newValue!)
+            updateUI()
         }
     }
     
-    let tableView = UITableView()
-    var visitsArr: [Visit] = []
-    let search = UISearchController(searchResultsController: nil)
+    var tableView = UITableView()
+    
+    var search: UISearchController = {
+        let search = UISearchController(searchResultsController: nil)
+        search.obscuresBackgroundDuringPresentation = false
+        search.hidesNavigationBarDuringPresentation = false
+        search.searchBar.placeholder = "Enter nickname from intra"
+        search.searchBar.returnKeyType = .done
+        return search
+    }()
+    
     var spinner: UIActivityIndicatorView! = {
         let loginSpinner = UIActivityIndicatorView(style: .large)
         loginSpinner.color = .black
@@ -34,45 +39,38 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        self.title = "Station Sessions History"
-        
-        getAccessToken()
-        setupSearchBar()
-        setupTableView()
-    }
-    
-    func setupSearchBar() {
-        search.searchResultsUpdater = self
-        search.obscuresBackgroundDuringPresentation = false
-        search.hidesNavigationBarDuringPresentation = false
-        search.searchBar.placeholder = "Enter nickname from intra"
-        search.searchBar.returnKeyType = .done
-        
-        search.searchBar.delegate = self
-        search.delegate = self
-        
-        navigationItem.searchController = search
-        navigationItem.hidesSearchBarWhenScrolling = false
-    }
-    
-    
-    func setupTableView() {
-        view.addSubview(tableView)
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        tableView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        tableView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
+        self.title = "Trying to connect to the server..."
         
         view.addSubview(spinner)
-        self.spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        self.spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        spinner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinner.startAnimating()
         
+        getAccessToken()
+    }
+    
+    func updateUI() {
+        DispatchQueue.main.async { [self] in
+            spinner.stopAnimating()
+            self.title = "Station Sessions History"
+            
+            search.searchBar.delegate = self
+            search.delegate = self
+            search.searchResultsUpdater = self
+            navigationItem.searchController = search
+            navigationItem.hidesSearchBarWhenScrolling = false
+            
+            view.addSubview(tableView)
+            tableView.translatesAutoresizingMaskIntoConstraints = false
+            tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+            tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+            
+            tableView.dataSource = self
+            tableView.delegate = self
+            tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
+        }
     }
     
 }
@@ -107,7 +105,7 @@ extension ViewController: APIIntra42Delegate {
     
     func errorOccured(error: NSError) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "User \(error.userInfo["username"] ?? "") not found", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
                 NSLog(error.localizedDescription)
             }))
@@ -115,7 +113,6 @@ extension ViewController: APIIntra42Delegate {
             self.spinner.stopAnimating()
             self.visitsArr = []
             self.tableView.reloadData()
-            print(error)
         }
     }
 }
@@ -141,6 +138,8 @@ extension ViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearch
 
 extension ViewController {
     func getAccessToken() {
+        let UID = "be7059d0939c5aa48803d0c69f6372a85794ac39ab90814f338766f9e25c4f4a"
+        let SECRET = "27d4796f7fc88b986b6d0052a13560d3719950157344d21456a5bd5016a387ea"
         let url = URL(string: "https://api.intra.42.fr/oauth/token".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!
         let data = ["grant_type":"client_credentials", "client_id":"\(UID)", "client_secret":"\(SECRET)"]
         
@@ -152,12 +151,12 @@ extension ViewController {
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             if let err = error {
-                self.errorOccured(error: err as NSError)
+                print(err)
                 return
             }
             guard let response = response as? HTTPURLResponse,
                   (200...299).contains(response.statusCode) else {
-                self.errorOccured(error: NSError(domain: "https://api.intra.42.fr/oauth/token", code: (response as! HTTPURLResponse).statusCode , userInfo: nil))
+                print(response!)
                 return
             }
             if let recievedData = data {
@@ -165,9 +164,9 @@ extension ViewController {
                     let json = try JSONSerialization.jsonObject(with: recievedData) as! Dictionary<String, AnyObject>
                     guard let token = json["access_token"] as? String else { return }
                     self.token = token
-                    print(json)
+                    print("Token successfully received")
                 } catch let err {
-                    self.errorOccured(error: err as NSError)
+                    print(err)
                 }
             }
         }
