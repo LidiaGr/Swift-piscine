@@ -70,6 +70,8 @@ class ViewController: UIViewController {
             tableView.dataSource = self
             tableView.delegate = self
             tableView.register(CustomCell.self, forCellReuseIdentifier: "cell")
+            
+            view.addSubview(spinner)
         }
     }
     
@@ -105,7 +107,7 @@ extension ViewController: APIIntra42Delegate {
     
     func errorOccured(error: NSError) {
         DispatchQueue.main.async {
-            let alert = UIAlertController(title: "Error", message: "User \(error.userInfo["username"] ?? "") not found", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "User '\(error.userInfo["username"] ?? "")' not found", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default, handler: { _ in
                 NSLog(error.localizedDescription)
             }))
@@ -113,6 +115,7 @@ extension ViewController: APIIntra42Delegate {
             self.spinner.stopAnimating()
             self.visitsArr = []
             self.tableView.reloadData()
+            self.search.searchBar.text = ""
         }
     }
 }
