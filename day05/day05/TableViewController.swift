@@ -8,7 +8,6 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    private let data = ["School 21 Kazan", "School 21 Moscow", "Ecole 42 Paris", "Ecole 42 Heilbronn",]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,13 +31,13 @@ class TableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return PlacesAPI.getCharacters().count
     }
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = data[indexPath.item]
+        cell.textLabel?.text = PlacesAPI.getCharacters()[indexPath.item].title
         return cell
     }
 }

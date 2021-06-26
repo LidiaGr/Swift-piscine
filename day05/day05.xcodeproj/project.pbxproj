@@ -9,23 +9,27 @@
 /* Begin PBXBuildFile section */
 		02466A082687335C00602F66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A072687335C00602F66 /* AppDelegate.swift */; };
 		02466A0A2687335C00602F66 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A092687335C00602F66 /* SceneDelegate.swift */; };
-		02466A0C2687335C00602F66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A0B2687335C00602F66 /* ViewController.swift */; };
+		02466A0C2687335C00602F66 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A0B2687335C00602F66 /* MapViewController.swift */; };
 		02466A112687335E00602F66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02466A102687335E00602F66 /* Assets.xcassets */; };
 		02466A142687335E00602F66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02466A122687335E00602F66 /* LaunchScreen.storyboard */; };
 		02466A1C268733BA00602F66 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A1B268733BA00602F66 /* TabBarViewController.swift */; };
 		02466A1E26873DBA00602F66 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A1D26873DBA00602F66 /* TableViewController.swift */; };
+		02466A2226874CB100602F66 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A2126874CB100602F66 /* Place.swift */; };
+		02466A2426874D5100602F66 /* PlacesApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A2326874D5100602F66 /* PlacesApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02466A042687335C00602F66 /* day05.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = day05.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02466A072687335C00602F66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02466A092687335C00602F66 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		02466A0B2687335C00602F66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		02466A0B2687335C00602F66 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		02466A102687335E00602F66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02466A132687335E00602F66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02466A152687335E00602F66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02466A1B268733BA00602F66 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		02466A1D26873DBA00602F66 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		02466A2126874CB100602F66 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		02466A2326874D5100602F66 /* PlacesApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,12 +64,14 @@
 			children = (
 				02466A072687335C00602F66 /* AppDelegate.swift */,
 				02466A092687335C00602F66 /* SceneDelegate.swift */,
-				02466A0B2687335C00602F66 /* ViewController.swift */,
+				02466A0B2687335C00602F66 /* MapViewController.swift */,
 				02466A102687335E00602F66 /* Assets.xcassets */,
 				02466A122687335E00602F66 /* LaunchScreen.storyboard */,
 				02466A152687335E00602F66 /* Info.plist */,
 				02466A1B268733BA00602F66 /* TabBarViewController.swift */,
 				02466A1D26873DBA00602F66 /* TableViewController.swift */,
+				02466A2126874CB100602F66 /* Place.swift */,
+				02466A2326874D5100602F66 /* PlacesApi.swift */,
 			);
 			path = day05;
 			sourceTree = "<group>";
@@ -141,8 +147,10 @@
 			files = (
 				02466A1C268733BA00602F66 /* TabBarViewController.swift in Sources */,
 				02466A1E26873DBA00602F66 /* TableViewController.swift in Sources */,
-				02466A0C2687335C00602F66 /* ViewController.swift in Sources */,
+				02466A2426874D5100602F66 /* PlacesApi.swift in Sources */,
+				02466A0C2687335C00602F66 /* MapViewController.swift in Sources */,
 				02466A082687335C00602F66 /* AppDelegate.swift in Sources */,
+				02466A2226874CB100602F66 /* Place.swift in Sources */,
 				02466A0A2687335C00602F66 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
