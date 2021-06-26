@@ -10,11 +10,16 @@ import MapKit
 
 class MapViewController: UIViewController {
     let map = MKMapView()
+    let segmentedControll = UISegmentedControl(items: ["Standard", "Hybrid", "Satellite"])
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view = map
+        view.backgroundColor = .systemBackground
     
+        setupMapView()
+        setupSegmentedControll()
+        
+        
         let pin = MKPointAnnotation()
         pin.coordinate = CLLocationCoordinate2D(latitude: 48.89661403264069, longitude: 2.3187477617230985)
         pin.title = "42"
@@ -22,6 +27,43 @@ class MapViewController: UIViewController {
         
         map.addAnnotation(pin)
         map.showAnnotations([pin], animated: true)
+        
+    }
+    
+    func setupSegmentedControll() {
+        segmentedControll.selectedSegmentIndex = 0
+        segmentedControll.selectedSegmentTintColor = .systemGroupedBackground
+        segmentedControll.backgroundColor = .white.withAlphaComponent(0.7)
+        segmentedControll.layer.borderWidth = 0.1
+        segmentedControll.addTarget(self, action: #selector(changeMapViewType(_:)), for: .valueChanged)
+        
+        map.addSubview(segmentedControll)
+        segmentedControll.translatesAutoresizingMaskIntoConstraints = false
+        segmentedControll.topAnchor.constraint(equalTo: map.topAnchor).isActive = true
+        segmentedControll.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
+    func setupMapView() {
+        view.addSubview(map)
+        
+        map.translatesAutoresizingMaskIntoConstraints = false
+        map.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        map.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        map.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        map.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    }
+    
+    @objc func changeMapViewType(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            map.mapType = .standard
+        case 1:
+            map.mapType = .hybrid
+        case 2:
+            map.mapType = .satellite
+        default:
+            break
+        }
     }
     
 }
