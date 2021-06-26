@@ -21,20 +21,24 @@ class MapViewController: UIViewController {
         
         setupMapView()
         setupSegmentedControll()
+        
         addLocationButton()
-        checkLocationService()
+        setupLocationManager()
         
         fetchPlacesOnMap()
     }
     
     func fetchPlacesOnMap() {
+        var annotations = [MKPointAnnotation()]
         for place in PlacesAPI.getPlaces() {
-            let annotations = MKPointAnnotation()
-            annotations.title = place.title
-            annotations.subtitle = place.info
-            annotations.coordinate = place.coordinate
-            mapView.addAnnotation(annotations)
+            let annotation = MKPointAnnotation()
+            annotation.title = place.title
+            annotation.subtitle = place.info
+            annotation.coordinate = place.coordinate
+            mapView.addAnnotation(annotation)
+            annotations.append(annotation)
         }
+        mapView.showAnnotations(annotations, animated: true)
     }
     
     func setupMapView() {
@@ -94,8 +98,7 @@ class MapViewController: UIViewController {
     }
     
     @objc func getMyLocation(_ sender: UIButton) {
-        locationButton.tintColor = .systemBlue
-        followUserLocation()
+        checkLocationService()
     }
 }
 
@@ -108,10 +111,9 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func checkLocationService() {
         if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
             checkLocationAuthorization()
         } else {
-            // Do something to let users know why they need to turn it on.
+            //TODO: Do something to let users know why they need to turn it on.
         }
     }
     
@@ -119,19 +121,19 @@ extension MapViewController: CLLocationManagerDelegate {
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
+            followUserLocation()
             locationManager.startUpdatingLocation()
             break
         case .denied:
-            // Show alert telling users how to turn on permissions
-            locationManager.requestWhenInUseAuthorization()
+            //TODO: Show alert telling users how to turn on permissions
+            print("alert")
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             mapView.showsUserLocation = true
             break
         case .restricted:
-            // Show alert telling users how to turn on permissions
-            locationManager.requestWhenInUseAuthorization()
+            //TODO: Show alert telling users how to turn on permissions
             break
         case .authorizedAlways:
             break
