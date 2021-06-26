@@ -25,7 +25,6 @@ class TabBarViewController: UITabBarController {
         let navController = UINavigationController(rootViewController: rootViewController)
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
-        navController.navigationBar.prefersLargeTitles = true
         rootViewController.navigationItem.title = title
         return navController
     }
@@ -34,7 +33,7 @@ class TabBarViewController: UITabBarController {
     func setupVCs() {
           viewControllers = [
               createNavController(for: ViewController(), title: NSLocalizedString("Map", comment: ""), image: UIImage(systemName: "map")!),
-              createNavController(for: ViewController(), title: NSLocalizedString("Places", comment: ""), image: UIImage(systemName: "mappin")!),
+              createNavController(for: TableViewController(), title: NSLocalizedString("Places", comment: ""), image: UIImage(systemName: "mappin")!),
           ]
       }
     

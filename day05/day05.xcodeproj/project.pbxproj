@@ -13,6 +13,7 @@
 		02466A112687335E00602F66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02466A102687335E00602F66 /* Assets.xcassets */; };
 		02466A142687335E00602F66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02466A122687335E00602F66 /* LaunchScreen.storyboard */; };
 		02466A1C268733BA00602F66 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A1B268733BA00602F66 /* TabBarViewController.swift */; };
+		02466A1E26873DBA00602F66 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02466A1D26873DBA00602F66 /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		02466A132687335E00602F66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02466A152687335E00602F66 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02466A1B268733BA00602F66 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		02466A1D26873DBA00602F66 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				02466A122687335E00602F66 /* LaunchScreen.storyboard */,
 				02466A152687335E00602F66 /* Info.plist */,
 				02466A1B268733BA00602F66 /* TabBarViewController.swift */,
+				02466A1D26873DBA00602F66 /* TableViewController.swift */,
 			);
 			path = day05;
 			sourceTree = "<group>";
@@ -137,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02466A1C268733BA00602F66 /* TabBarViewController.swift in Sources */,
+				02466A1E26873DBA00602F66 /* TableViewController.swift in Sources */,
 				02466A0C2687335C00602F66 /* ViewController.swift in Sources */,
 				02466A082687335C00602F66 /* AppDelegate.swift in Sources */,
 				02466A0A2687335C00602F66 /* SceneDelegate.swift in Sources */,
