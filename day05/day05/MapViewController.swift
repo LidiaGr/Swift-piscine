@@ -20,26 +20,32 @@ class MapViewController: UIViewController {
         setupSegmentedControll()
         
         
-        let pin = MKPointAnnotation()
-        pin.coordinate = CLLocationCoordinate2D(latitude: 48.89661403264069, longitude: 2.3187477617230985)
-        pin.title = "42"
-        pin.subtitle = "Alma Mater"
+//        let pin = MKPointAnnotation()
+//        pin.coordinate = CLLocationCoordinate2D(latitude: 48.89661403264069, longitude: 2.3187477617230985)
+//        pin.title = "42"
+//        pin.subtitle = "Alma Mater"
         
-        map.addAnnotation(pin)
-        map.showAnnotations([pin], animated: true)
+//        map.addAnnotation(pin)
+//        map.showAnnotations([pin], animated: true)
         
+        map.addAnnotations(PlacesAPI.getPlaces())
+        map.showAnnotations(PlacesAPI.getPlaces(), animated: true)
     }
     
     func setupSegmentedControll() {
         segmentedControll.selectedSegmentIndex = 0
-        segmentedControll.selectedSegmentTintColor = .systemGroupedBackground
-        segmentedControll.backgroundColor = .white.withAlphaComponent(0.7)
-        segmentedControll.layer.borderWidth = 0.1
+        segmentedControll.selectedSegmentTintColor = .systemBlue
+        segmentedControll.backgroundColor = .white
+        segmentedControll.layer.borderWidth = 1
+        segmentedControll.layer.borderColor = UIColor.systemBlue.cgColor
+        segmentedControll.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+        segmentedControll.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemBlue], for: .normal)
+        
         segmentedControll.addTarget(self, action: #selector(changeMapViewType(_:)), for: .valueChanged)
         
         map.addSubview(segmentedControll)
         segmentedControll.translatesAutoresizingMaskIntoConstraints = false
-        segmentedControll.topAnchor.constraint(equalTo: map.topAnchor).isActive = true
+        segmentedControll.bottomAnchor.constraint(equalTo: map.bottomAnchor, constant: -10).isActive = true
         segmentedControll.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     

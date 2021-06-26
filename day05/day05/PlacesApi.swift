@@ -14,7 +14,7 @@ class PlacesAPI {
         Place(title: "Ecole 42 Heilbronn", coordinate: CLLocationCoordinate2D(latitude: 49.15327276589704, longitude: 9.216014919637646), info: "First School in Germany")
     ]
     
-    static func getCharacters() -> [Place] {
+    static func getPlaces() -> [Place] {
         return allPlaces
     }
 }
