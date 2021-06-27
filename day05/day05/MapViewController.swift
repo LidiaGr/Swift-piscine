@@ -103,7 +103,6 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: CLLocationManagerDelegate {
-    
     func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -113,7 +112,7 @@ extension MapViewController: CLLocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             checkLocationAuthorization()
         } else {
-            //TODO: Do something to let users know why they need to turn it on.
+            showAlert(msg: "Turn on your Location Services to allow \"day05\" to determine your location")
         }
     }
     
@@ -125,15 +124,14 @@ extension MapViewController: CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
             break
         case .denied:
-            //TODO: Show alert telling users how to turn on permissions
-            print("alert")
+            showAlert(msg: "\"day05\" can only access your location when you choose to share it")
             break
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
             mapView.showsUserLocation = true
             break
         case .restricted:
-            //TODO: Show alert telling users how to turn on permissions
+            showAlert(msg: "\"day05\" can only access your location when you choose to share it")
             break
         case .authorizedAlways:
             break
@@ -160,7 +158,24 @@ extension MapViewController: CLLocationManagerDelegate {
         mapView.setRegion(region, animated: true)
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
+    func showAlert(msg: String){
+        let alertController = UIAlertController (title: msg, message: "Go to Settings?", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
+        
+        alertController.addAction(settingsAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
     }
 }
