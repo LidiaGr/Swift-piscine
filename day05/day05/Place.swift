@@ -12,10 +12,12 @@ class Place: NSObject, MKAnnotation {
     var title: String?
     var coordinate: CLLocationCoordinate2D
     var info: String
+    var color: UIColor
     
-    init(title: String, coordinate: CLLocationCoordinate2D, info: String) {
+    init(title: String, coordinate: CLLocationCoordinate2D, info: String, color: UIColor) {
         self.title = title
         self.coordinate = coordinate
         self.info = info
+        self.color = color
     }
 }

@@ -106,7 +106,7 @@ extension MapViewController: CLLocationManagerDelegate {
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
-            followUserLocation()
+            goToUserLocation()
             locationManager.startUpdatingLocation()
             break
         case .denied:
@@ -126,7 +126,7 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
     
-    func followUserLocation() {
+    func goToUserLocation() {
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: 4000, longitudinalMeters: 4000)
             mapView.setRegion(region, animated: true)
@@ -137,13 +137,7 @@ extension MapViewController: CLLocationManagerDelegate {
         print("User changed authorisiton")
         checkLocationAuthorization()
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        let region = MKCoordinateRegion.init(center: location.coordinate, latitudinalMeters: 4000, longitudinalMeters: 4000)
-        mapView.setRegion(region, animated: true)
-    }
-    
+        
     func showAlert(msg: String){
         let alertController = UIAlertController (title: msg, message: "Go to Settings?", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
@@ -180,24 +174,28 @@ extension MapViewController: MKMapViewDelegate {
             annotations.append(annotation)
         }
         mapView.showAnnotations(annotations, animated: true)
+        mapView.register(MKMarkerAnnotationView.self, forAnnotationViewWithReuseIdentifier: "Place")
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "Placemark"
-        
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        
-        guard annotation is MKPointAnnotation else { return nil }
-        
-        annotationView?.displayPriority = .required
-        if annotationView == nil {
-            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            annotationView?.canShowCallout = true
-        } else {
-            annotationView?.annotation = annotation
-        }
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+               return nil
+           }
 
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Place") as? MKMarkerAnnotationView
+        annotationView?.canShowCallout = true
+        
+        var color: UIColor = .red
+        for place in PlacesAPI.getPlaces() {
+            if place.title == annotation.title {
+                color = place.color
+            }
+        }
+        annotationView?.markerTintColor = color
+        annotationView?.glyphImage = UIImage(systemName: "heart")
+        
         return annotationView
+        
     }
     
     func goToPlace(place: Place) {
