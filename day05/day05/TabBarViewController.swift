@@ -23,7 +23,7 @@ class TabBarViewController: UITabBarController {
     
     func setupTabBar() {
         self.viewControllers = [mapVC, tableVC]
-        self.selectedIndex = 1
+        self.selectedIndex = 0
 
         self.viewControllers?[0].title = "Map"
         self.viewControllers?[0].tabBarItem.image = UIImage(systemName: "map")

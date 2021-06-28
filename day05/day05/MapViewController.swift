@@ -184,6 +184,7 @@ extension MapViewController: MKMapViewDelegate {
 
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "Place") as? MKMarkerAnnotationView
         annotationView?.canShowCallout = true
+        annotationView?.rightCalloutAccessoryView = UITextView()
         
         var color: UIColor = .red
         for place in PlacesAPI.getPlaces() {
