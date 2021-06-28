@@ -8,33 +8,27 @@
 import UIKit
 
 class TabBarViewController: UITabBarController {
-    
+    let mapVC = MapViewController()
+    let tableVC = TableViewController()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .systemBackground
         UITabBar.appearance().barTintColor = .systemBackground
         tabBar.tintColor = .systemBlue
-        setupVCs()
+        
+        setupTabBar()
     }
     
-    
-    fileprivate func createNavController(for rootViewController: UIViewController,
-                                         title: String,
-                                         image: UIImage) -> UIViewController {
-        let navController = UINavigationController(rootViewController: rootViewController)
-        navController.tabBarItem.title = title
-        navController.tabBarItem.image = image
-        rootViewController.navigationItem.title = title
-        return navController
+    func setupTabBar() {
+        self.viewControllers = [mapVC, tableVC]
+        self.selectedIndex = 1
+
+        self.viewControllers?[0].title = "Map"
+        self.viewControllers?[0].tabBarItem.image = UIImage(systemName: "map")
+        
+        self.viewControllers?[1].title = "Places"
+        self.viewControllers?[1].tabBarItem.image = UIImage(systemName: "mappin")
     }
-    
-    
-    func setupVCs() {
-          viewControllers = [
-              createNavController(for: MapViewController(), title: NSLocalizedString("Map", comment: ""), image: UIImage(systemName: "map")!),
-              createNavController(for: TableViewController(), title: NSLocalizedString("Places", comment: ""), image: UIImage(systemName: "mappin")!),
-          ]
-      }
-    
 }

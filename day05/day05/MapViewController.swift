@@ -23,28 +23,13 @@ class MapViewController: UIViewController {
         setupSegmentedControll()
         
         addLocationButton()
-        setupLocationManager()
-        
         fetchPlacesOnMap()
     }
     
-    func fetchPlacesOnMap() {
-        var annotations = [MKPointAnnotation()]
-        for place in PlacesAPI.getPlaces() {
-            let annotation = MKPointAnnotation()
-            annotation.title = place.title
-            annotation.subtitle = place.info
-            annotation.coordinate = place.coordinate
-            mapView.addAnnotation(annotation)
-            annotations.append(annotation)
-        }
-        mapView.showAnnotations(annotations, animated: true)
-    }
-    
     func setupMapView() {
+        mapView.delegate = self
         view.addSubview(mapView)
         
-        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.03496, longitude: 10.20908), latitudinalMeters: 4000000, longitudinalMeters: 4000000), animated: true)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
@@ -110,6 +95,7 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func checkLocationService() {
         if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
             checkLocationAuthorization()
         } else {
             showAlert(msg: "Turn on your Location Services to allow \"day05\" to determine your location")
@@ -179,3 +165,45 @@ extension MapViewController: CLLocationManagerDelegate {
         present(alertController, animated: true, completion: nil)
     }
 }
+
+
+extension MapViewController: MKMapViewDelegate {
+    
+    func fetchPlacesOnMap() {
+        var annotations = [MKPointAnnotation()]
+        for place in PlacesAPI.getPlaces() {
+            let annotation = MKPointAnnotation()
+            annotation.title = place.title
+            annotation.subtitle = place.info
+            annotation.coordinate = place.coordinate
+            mapView.addAnnotation(annotation)
+            annotations.append(annotation)
+        }
+        mapView.showAnnotations(annotations, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "Placemark"
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        annotationView?.displayPriority = .required
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.canShowCallout = true
+        } else {
+            annotationView?.annotation = annotation
+        }
+
+        return annotationView
+    }
+    
+    func goToPlace(place: Place) {
+        let center = place.coordinate
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        mapView.setRegion(region, animated: true)
+    }
+}
+
