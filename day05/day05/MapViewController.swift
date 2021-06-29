@@ -132,11 +132,6 @@ extension MapViewController: CLLocationManagerDelegate {
             mapView.setRegion(region, animated: true)
         }
     }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        print("User changed authorisiton")
-        checkLocationAuthorization()
-    }
         
     func showAlert(msg: String){
         let alertController = UIAlertController (title: msg, message: "Go to Settings?", preferredStyle: .alert)
