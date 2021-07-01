@@ -10,6 +10,7 @@ import Alamofire
 
 class ViewController: UIViewController, UITextFieldDelegate {
     
+    let about = UILabel()
     let button = UIButton()
     let label = UILabel()
     let textField = UITextField()
@@ -38,10 +39,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         view.addSubview(stackView)
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+        view.addSubview(about)
+        about.text = "Is peer at school?"
+        about.textColor = UIColor.black
+        about.font = UIFont.systemFont(ofSize: 30)
+        about.textAlignment = .center
+        about.translatesAutoresizingMaskIntoConstraints = false
+        about.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -50).isActive = true
+        about.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
     func setupTextField() {
-        textField.placeholder = "Type your request"
+        textField.placeholder = "Type intra42 username"
         textField.textAlignment = .center
         textField.font = UIFont.systemFont(ofSize: 20)
         textField.borderStyle = .roundedRect
@@ -113,23 +123,23 @@ extension ViewController {
         Alamofire.request("https://api.intra.42.fr/v2/users/\(textField.text?.lowercased() ?? "")", method: .get, headers: headers).validate().responseJSON { response in
             switch response.result {
             case .success:
-                switch response.response?.statusCode {
-                case 200, 201:
-                    if let theArray = response.result.value as? NSDictionary {
-                        if theArray["location"] is NSNull {
-                            self.label.text = "not avaliable"
-                        } else {
-                            self.label.text = "avaliable at \(theArray["location"]!)"
-                        }
+                if let theArray = response.result.value as? NSDictionary {
+                    if theArray["location"] is NSNull {
+                        self.label.text = "not avaliable"
+                    } else {
+                        self.label.text = "avaliable at \(theArray["location"]!)"
                     }
+                }
+            case .failure:
+                switch response.response?.statusCode {
                 case 401:
                     self.token = ""
                     self.getTokenAndMakeRequest()
+                case 404:
+                    self.label.text = "no such user"
                 default:
                     debugPrint(response)
                 }
-            case .failure:
-                debugPrint(response)
             }
         }
     }
