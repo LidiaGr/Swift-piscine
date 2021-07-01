@@ -14,5 +14,5 @@ All projects are appropriate for all devices even in landscape mode.
 
 - Day05: [Map](https://github.com/LidiaGr/Swift_piscine/tree/main/day05) App
 
-- Day07: Cocoapods, Alomafire 
+- Day07: Cocoapods, Alamofire 
 
