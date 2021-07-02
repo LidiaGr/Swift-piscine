@@ -1,0 +1,22 @@
+{
+  "name": "ttarsha2021",
+  "version": "0.1.0",
+  "summary": "A short description of ttarsha2021.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/LidiaGr/ttarsha2021",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "LidiaGr": "lidia.ls16@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/LidiaGr/ttarsha2021.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "ttarsha2021/Classes/**/*"
+}
