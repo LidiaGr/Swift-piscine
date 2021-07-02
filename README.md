@@ -16,5 +16,5 @@ All projects are appropriate for all devices even in landscape mode.
 
 - Day07: Cocoapods, Alamofire 
 
-- Day08: CoreData, own CocoaPod framework
+- Day08: CoreData, own framework (CocoaPod)
 
