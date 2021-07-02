@@ -32,7 +32,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '11.0'
 
   s.source_files = 'ttarsha2021/Classes/**/*'
-#  s.resource = 'ttarsha2021/Assets/*'
   s.resource    = 'ttarsha2021/Assets/*'
   
   # s.resource_bundles = {

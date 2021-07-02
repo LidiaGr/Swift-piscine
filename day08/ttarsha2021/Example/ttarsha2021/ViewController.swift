@@ -42,6 +42,16 @@ class ViewController: UIViewController {
         print("All articles in english: \(articleManager.getArticles(withLang: "english").description)")
         print("All articles containig word 'first': \(articleManager.getArticles(containString: "first").count)")
         
+//        articleManager.save()
+//        clearData()
+    }
+    
+    func clearData() {
+        let articles = articleManager.getAllArticles()
+        for article in articles {
+            articleManager.removeArticle(article: article)
+        }
+        print("Article count after clearData: \(articleManager.getAllArticles().count)")
         articleManager.save()
     }
 

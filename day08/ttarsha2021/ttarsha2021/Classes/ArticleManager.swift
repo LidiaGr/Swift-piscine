@@ -23,7 +23,7 @@ public class ArticleManager {
             fatalError("Error initializing mom from: \(modelURL)")
         }
 
-        let container = NSPersistentContainer(name: "Article", managedObjectModel: mom)
+        let container = NSPersistentContainer(name: "Articles", managedObjectModel: mom)
         container.loadPersistentStores { description, error in
             if let error = error {
                 fatalError("Unable to load persistent stores: \(error)")
