@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0203BD85268F45B1005091B8 /* Article.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0203BD83268F45B1005091B8 /* Article.xcdatamodeld */; };
+		0203BD8C268F479F005091B8 /* Article+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0203BD8A268F479F005091B8 /* Article+CoreDataClass.swift */; };
+		0203BD8D268F479F005091B8 /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0203BD8B268F479F005091B8 /* Article+CoreDataProperties.swift */; };
 		1370B1EAEB89CB1C0B9BA3948168A5D8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		1B543C2909998ABD3F450CFBAA0AAEE0 /* Pods-ttarsha2021_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DB6F3257C4E10E954314DFDFD529D32C /* Pods-ttarsha2021_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2E134369D0C00EED8DEE60715E33E6B2 /* Pods-ttarsha2021_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A50FFB16C8E9EE2BD03411EE43C2FD10 /* Pods-ttarsha2021_Example-dummy.m */; };
@@ -16,7 +19,6 @@
 		876D7710D834816528487E8C2D8167E6 /* ttarsha2021-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F4AED8B0E56BEAD8CB70AEEC323AFB /* ttarsha2021-dummy.m */; };
 		D6D33F21141B151CD348717556822099 /* Pods-ttarsha2021_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8C5AB2E064AA3449D8ABA3B4A6490D72 /* Pods-ttarsha2021_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E755DB1184AAD3E9CB894FA09845A282 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		F4EDD3B67D80B904977D41F77EB6C088 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7978D2206A7E466F2C3C5FE3F6BBF0 /* ReplaceMe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,25 +39,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0203BD84268F45B1005091B8 /* Article.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Article.xcdatamodel; sourceTree = "<group>"; };
+		0203BD8A268F479F005091B8 /* Article+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Article+CoreDataClass.swift"; path = "../../ttarsha2021/Classes/Article+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0203BD8B268F479F005091B8 /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Article+CoreDataProperties.swift"; path = "../../ttarsha2021/Classes/Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0A8B9915ED0D1916CD162679AC3CE277 /* Pods-ttarsha2021_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ttarsha2021_Example-frameworks.sh"; sourceTree = "<group>"; };
 		0B99C484B98A5C7B4AC1FFE5404629CC /* Pods-ttarsha2021_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ttarsha2021_Example.release.xcconfig"; sourceTree = "<group>"; };
 		16D3B6051FE56A244C52831214AF7020 /* Pods-ttarsha2021_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ttarsha2021_Tests.modulemap"; sourceTree = "<group>"; };
-		1B67151F6B71AFD78548892DFB68B5E6 /* Pods_ttarsha2021_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ttarsha2021_Tests.framework; path = "Pods-ttarsha2021_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DBF6939EE065B4466B87A7E543AF0B8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		1B67151F6B71AFD78548892DFB68B5E6 /* Pods_ttarsha2021_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ttarsha2021_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2DBF6939EE065B4466B87A7E543AF0B8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		30F4AED8B0E56BEAD8CB70AEEC323AFB /* ttarsha2021-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ttarsha2021-dummy.m"; sourceTree = "<group>"; };
 		479E4B7792A3B18146FD7553594E29DB /* Pods-ttarsha2021_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ttarsha2021_Tests-Info.plist"; sourceTree = "<group>"; };
 		6490C69A98EFA68C7E33681458F6C651 /* Pods-ttarsha2021_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ttarsha2021_Example.modulemap"; sourceTree = "<group>"; };
 		70354A58F3151440B319FFF6D4F1621E /* ttarsha2021.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ttarsha2021.debug.xcconfig; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		79F1B573C9347B9739F43D1ACA429DA5 /* ttarsha2021.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ttarsha2021.release.xcconfig; sourceTree = "<group>"; };
-		7FD257E648BE93CD70C4509CA20032DA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		7FD257E648BE93CD70C4509CA20032DA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		8C5AB2E064AA3449D8ABA3B4A6490D72 /* Pods-ttarsha2021_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ttarsha2021_Example-umbrella.h"; sourceTree = "<group>"; };
 		8DB86423D93ABA7FDC172B57A79CF8CD /* Pods-ttarsha2021_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ttarsha2021_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		96D281F1FCFA4B0965D1F1214C44B351 /* Pods-ttarsha2021_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ttarsha2021_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		97394E2AF6DF83972E0DCBE57800DB0F /* ttarsha2021.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ttarsha2021.modulemap; sourceTree = "<group>"; };
 		98E10C4570DA041F1184A9424918B098 /* Pods-ttarsha2021_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ttarsha2021_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9D0E913FF0EAEC394A7EEC804DBA4FF9 /* Pods-ttarsha2021_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ttarsha2021_Example-Info.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A50FFB16C8E9EE2BD03411EE43C2FD10 /* Pods-ttarsha2021_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ttarsha2021_Example-dummy.m"; sourceTree = "<group>"; };
 		AEB5B1B916EBF1D9FC61431679A89E5B /* Pods-ttarsha2021_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ttarsha2021_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C0165DCFFEE8098D502F5BA5666AE753 /* Pods-ttarsha2021_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ttarsha2021_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,10 +68,9 @@
 		C71CD7A5164044D63835B0022B778F2C /* ttarsha2021-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ttarsha2021-umbrella.h"; sourceTree = "<group>"; };
 		DB6F3257C4E10E954314DFDFD529D32C /* Pods-ttarsha2021_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ttarsha2021_Tests-umbrella.h"; sourceTree = "<group>"; };
 		DCBB2F4AB2DB1E6BB4630AB39B34A983 /* Pods-ttarsha2021_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ttarsha2021_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E07ADBE4C7B5E2E74AEA302D1906C886 /* ttarsha2021.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ttarsha2021.framework; path = ttarsha2021.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EB7978D2206A7E466F2C3C5FE3F6BBF0 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = ttarsha2021/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
-		EE746CC842F07E67F8E3DD3E660BA0ED /* Pods_ttarsha2021_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ttarsha2021_Example.framework; path = "Pods-ttarsha2021_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F16BD4170E12795F801284F4A90D2AA1 /* ttarsha2021.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = ttarsha2021.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		E07ADBE4C7B5E2E74AEA302D1906C886 /* ttarsha2021.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ttarsha2021.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE746CC842F07E67F8E3DD3E660BA0ED /* Pods_ttarsha2021_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ttarsha2021_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F16BD4170E12795F801284F4A90D2AA1 /* ttarsha2021.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = ttarsha2021.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		F2BF1D83C2DDD4351A047A35EAC258A7 /* Pods-ttarsha2021_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ttarsha2021_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		F58A967A6F4FF0D2F53A2D5147C709E2 /* Pods-ttarsha2021_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ttarsha2021_Tests-dummy.m"; sourceTree = "<group>"; };
 		FF81C7224816B90F68043384E6594470 /* ttarsha2021-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ttarsha2021-Info.plist"; sourceTree = "<group>"; };
@@ -154,9 +158,9 @@
 		9EBBC9A7290AD43797AE9A4211CF5ABD /* ttarsha2021 */ = {
 			isa = PBXGroup;
 			children = (
-				EB7978D2206A7E466F2C3C5FE3F6BBF0 /* ReplaceMe.swift */,
 				3482C93E3A5A6198047534E891301240 /* Pod */,
 				78FE0540638E744DC42CFC93E9ED47BB /* Support Files */,
+				0203BD83268F45B1005091B8 /* Article.xcdatamodeld */,
 			);
 			name = ttarsha2021;
 			path = ../..;
@@ -198,6 +202,8 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
+				0203BD8A268F479F005091B8 /* Article+CoreDataClass.swift */,
+				0203BD8B268F479F005091B8 /* Article+CoreDataProperties.swift */,
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				6A32358DD1659BE1D6D5033437E46FC5 /* Development Pods */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
@@ -367,8 +373,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4EDD3B67D80B904977D41F77EB6C088 /* ReplaceMe.swift in Sources */,
 				876D7710D834816528487E8C2D8167E6 /* ttarsha2021-dummy.m in Sources */,
+				0203BD8D268F479F005091B8 /* Article+CoreDataProperties.swift in Sources */,
+				0203BD8C268F479F005091B8 /* Article+CoreDataClass.swift in Sources */,
+				0203BD85268F45B1005091B8 /* Article.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,8 +662,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -765,6 +772,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0203BD83268F45B1005091B8 /* Article.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0203BD84268F45B1005091B8 /* Article.xcdatamodel */,
+			);
+			currentVersion = 0203BD84268F45B1005091B8 /* Article.xcdatamodel */;
+			name = Article.xcdatamodeld;
+			path = ttarsha2021/Assets/Article.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 }
