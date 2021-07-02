@@ -24,6 +24,6 @@ extension Article {
     @NSManaged public var modified_at: Date?
     
     override public var description: String {
-        return "Title: \(title!)\nContent:\(content!)\nLanguage:\(language!)\nCreated at:\(created_at!)\nModified at: \(updated_at!)\n"
+        return "Title: \(title ?? "no title")\nContent:\(content ?? "no context")\nLanguage:\(language ?? "no language")\nCreated at:\(created_at ?? Date())\nModified at: \(modified_at ?? Date())\n"
     }
 }

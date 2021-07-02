@@ -1,9 +1,10 @@
 {
   "name": "ttarsha2021",
   "version": "0.1.0",
-  "summary": "A short description of ttarsha2021.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/LidiaGr/ttarsha2021",
+  "summary": "A pod for swift_piscine 42 Day08",
+  "swift_versions": "4.0.0",
+  "description": "'Day08 objective is to create a package that will use the CoreData framework to learn how to use data persistance and models. The aim being to create an article manager that will serve as interface for the D09.'",
+  "homepage": "https://github.com/LidiaGr/Swift_piscine.git",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +13,17 @@
     "LidiaGr": "lidia.ls16@gmail.com"
   },
   "source": {
-    "git": "https://github.com/LidiaGr/ttarsha2021.git",
+    "git": "https://github.com/LidiaGr/Swift_piscine.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "9.0"
+    "ios": "11.0"
   },
-  "source_files": "ttarsha2021/Classes/**/*"
+  "source_files": "ttarsha2021/Classes/**/*",
+  "resources": "ttarsha2021/Assets/*",
+  "frameworks": [
+    "UIKit",
+    "CoreData"
+  ],
+  "swift_version": "4.0.0"
 }
