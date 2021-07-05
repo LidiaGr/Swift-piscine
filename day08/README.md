@@ -6,5 +6,5 @@ Created 'Article' CoreDataModel and ArticleManager service to handle articles an
 
 Learned:
 - CocoaPods
-- CoreData
+- CoreData Model and Stack
 
