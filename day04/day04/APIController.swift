@@ -90,9 +90,9 @@ class APIController {
             if end == nil {
                 end = "now"
             }
-            let date = visit.begin_at.toDate()?.toString(withFormat: "d MMMM yyyy EEEE")
+            let date = visit.begin_at.toDate()!.toString(withFormat: "d MMMM yyyy EEEE")
             
-            visits.append(Visit(host: host, begin_at: begin, end_at: end!, date: date!))
+            visits.append(Visit(host: host, begin_at: begin, end_at: end!, date: date))
         }
         return visits
     }
