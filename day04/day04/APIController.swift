@@ -16,8 +16,41 @@ class APIController {
         self.token = apiToken
     }
     
-    func searchVisits(username: String) {
-        let url = URL(string: "https://api.intra.42.fr/v2/users/\(username)/locations?per_page=100".addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+    func findUser(username: String) {
+        let url = URL(string: "https://api.intra.42.fr/v2/users/\(username)"
+                        .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
+        
+        var request = URLRequest(url: url!)
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(self.token)", forHTTPHeaderField: "Authorization")
+        
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let err = error {
+                print(err)
+                return
+            }
+            guard let response = response as? HTTPURLResponse,
+                  (200...299).contains(response.statusCode) else {
+                print ("Alert")
+                self.delegate?.errorOccured(error: NSError(domain: "https://api.intra.42.fr/v2/users/\(username)", code: (response as! HTTPURLResponse).statusCode , userInfo: ["username": "\(username)"]))
+                return
+            }
+            if let recievedData = data {
+                do {
+                    let user = try JSONDecoder().decode(User.self, from: recievedData)
+//                    print(user)
+                    self.searchVisits(userId: user.id)
+                } catch let err {
+                    print(err)
+                }
+            }
+        }.resume()
+    }
+    
+    func searchVisits(userId: Int) {
+        let url = URL(string: "https://api.intra.42.fr/v2/locations?filter[user_id]=\(userId)"
+                        .addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)
         
         var request = URLRequest(url: url!)
         request.httpMethod = "GET"
@@ -31,23 +64,13 @@ class APIController {
             }
             guard let response = response as? HTTPURLResponse,
                   (200...299).contains(response.statusCode) else {
-                print ("Alert")
-                self.delegate?.errorOccured(error: NSError(domain: "https://api.intra.42.fr/v2/users/\(username)", code: (response as! HTTPURLResponse).statusCode , userInfo: ["username": "\(username)"]))
+                print(response!)
                 return
             }
             if let recievedData = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: recievedData)
-                    guard let theArray = json as? NSArray else { return }
-                    var visits: [Visit] = []
-                    for theElement in theArray {
-                        guard let theDecodedElement = theElement as? NSDictionary,
-                              let hostId = theDecodedElement["host"] as? String,
-                              let beginAt = theDecodedElement["begin_at"] as? String,
-                              let endAt = theDecodedElement["end_at"] as? String
-                        else { continue }
-                        visits.append(Visit(host: hostId, begin_at: beginAt.toDate()!.toString(withFormat: "HH:mm"), end_at: endAt.toDate()!.toString(withFormat: "HH:mm"), date: beginAt.toDate()!.toString(withFormat: "d MMMM yyyy EEEE")))
-                    }
+                    let visit = try JSONDecoder().decode([RawVisit].self, from: recievedData)
+                    let visits = self.convertRawToVisit(raw: visit)
                     self.delegate?.processData(visits: visits)
                 } catch let err {
                     print(err)
@@ -56,5 +79,21 @@ class APIController {
         }
         
         task.resume()
+    }
+    
+    func convertRawToVisit(raw: [RawVisit]) -> [Visit] {
+        var visits: [Visit] = []
+        for visit in raw {
+            let host = visit.host
+            let begin = visit.begin_at.toDate()!.toString(withFormat: "HH:mm")
+            var end = visit.end_at?.toDate()?.toString(withFormat: "HH:mm")
+            if end == nil {
+                end = "now"
+            }
+            let date = visit.begin_at.toDate()?.toString(withFormat: "d MMMM yyyy EEEE")
+            
+            visits.append(Visit(host: host, begin_at: begin, end_at: end!, date: date!))
+        }
+        return visits
     }
 }

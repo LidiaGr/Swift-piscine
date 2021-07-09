@@ -120,7 +120,7 @@ extension ViewController: UISearchResultsUpdating, UISearchBarDelegate, UISearch
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         self.spinner?.startAnimating()
         guard let text = search.searchBar.text?.lowercased() else { return }
-        self.apiController?.searchVisits(username: text)
+        self.apiController?.findUser(username: text)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

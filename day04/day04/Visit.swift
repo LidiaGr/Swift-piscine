@@ -7,11 +7,23 @@
 
 import UIKit
 
+struct User: Decodable {
+    var id:     Int
+    var login:  String
+    var url:    String
+}
+
+struct RawVisit: Decodable {
+    let host:       String
+    var begin_at:   String
+    let end_at:     String?
+}
+
 struct Visit: CustomStringConvertible {
-    let host: String
-    var begin_at: String
-    let end_at: String
-    let date: String
+    let host:       String
+    var begin_at:   String
+    let end_at:     String
+    let date:       String
     
     var description: String {
         return "\(date)\n\(begin_at) - \(end_at)\n\(host)"
