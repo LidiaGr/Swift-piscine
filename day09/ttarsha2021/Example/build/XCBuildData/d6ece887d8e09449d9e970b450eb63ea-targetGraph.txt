@@ -1,0 +1,6 @@
+Target dependency graph (3 targets)
+ttarsha2021 in Pods
+Pods-ttarsha2021_Example in Pods, depends on:
+ttarsha2021 in Pods (explicit)
+Pods-ttarsha2021_Tests in Pods, depends on:
+Pods-ttarsha2021_Example in Pods (explicit)

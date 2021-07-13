@@ -1,0 +1,16 @@
+PODS:
+  - ttarsha2021 (0.1.0)
+
+DEPENDENCIES:
+  - ttarsha2021 (from `../`)
+
+EXTERNAL SOURCES:
+  ttarsha2021:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  ttarsha2021: d7c01d3cbeb768651bd06ec0697e4ceb25960972
+
+PODFILE CHECKSUM: 0ca6fb65d44abe5e659e3cda6c10213bcddae7c9
+
+COCOAPODS: 1.10.1

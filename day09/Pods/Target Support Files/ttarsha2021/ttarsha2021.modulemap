@@ -1,0 +1,6 @@
+framework module ttarsha2021 {
+  umbrella header "ttarsha2021-umbrella.h"
+
+  export *
+  module * { export * }
+}
