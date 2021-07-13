@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ttarsha2021'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'A pod for swift_piscine 42 Day08'
   s.swift_versions   = '4.0.0'
 
