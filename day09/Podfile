@@ -5,6 +5,6 @@ target 'day09' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'ttarsha2021', :git => 'https://github.com/LidiaGr/Swift_piscine.git'  
+  pod 'ttarsha2021', :path => './ttarsha2021'  
   # Pods for day09
 end
