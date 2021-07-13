@@ -1,0 +1,45 @@
+{
+  "buildCommand" : "prepareForIndexing",
+  "configuredTargets" : [
+    {
+      "guid" : "ae989667010c6a8677e616d2acff2eeabbae224689367624122262e7d68592fc"
+    },
+    {
+      "guid" : "ae989667010c6a8677e616d2acff2eeaee24e5ef4d517846b37cb8e9265b4d29"
+    },
+    {
+      "guid" : "ae989667010c6a8677e616d2acff2eea56808685c612d8dbf27358af0607755c"
+    }
+  ],
+  "continueBuildingAfterErrors" : true,
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "build",
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "",
+      "buildProductsPath" : "",
+      "derivedDataPath" : "/Users/lidia/Library/Developer/Xcode/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/lidia/Library/Developer/Xcode/DerivedData/Pods-fbvtdjdoisllbidmnxjiizeddjmg/Index/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/lidia/Library/Developer/Xcode/DerivedData/Pods-fbvtdjdoisllbidmnxjiizeddjmg/Index/PrecompiledHeaders",
+      "pchPath" : ""
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "synthesized" : {
+        "table" : {
+          "ENABLE_PREVIEWS" : "NO"
+        }
+      }
+    }
+  },
+  "qos" : "default",
+  "schemeCommand" : "launch",
+  "shouldCollectMetrics" : false,
+  "showNonLoggedProgress" : true,
+  "useDryRun" : true,
+  "useImplicitDependencies" : false,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : false
+}
