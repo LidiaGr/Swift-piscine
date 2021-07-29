@@ -1,6 +1,6 @@
 # Swift-piscine
 ### Learning projects - swift programmatically:
-All projects are appropriate for all devices even in landscape mode.
+All projects are appropriate for all devices in portrait and landscape mode.
 
 - Day00: [Calculator](https://github.com/LidiaGr/Swift-piscine/tree/main/day00) App   
 
