@@ -10,9 +10,9 @@ let deck1 = Deck(sorted: false)
 let deck2 = Deck(sorted: true)
 
 print("--- Create deck ---")
-print("deck1 mixed after description call = \(deck1.description)")
+print("deck1 mixed = \(deck1.description)")
 print()
-print("deck2 sorted after description call = \(deck2.description)")
+print("deck2 sorted = \(deck2.description)")
 print()
 
 print("--- Draw card ---")
@@ -31,9 +31,12 @@ print("Outs after fold call = \(deck2.outs)")
 print()
 
 print("--- Out of Bound ---")
+var c: Card?
 for _ in 0...50 {
-    deck1.draw()
+    c = deck1.draw()
 }
-deck1.draw() // last element
-deck1.draw() // deck1 is already empty, program does not crash
+c = deck1.draw() // last element
+print(c!)
+c = deck1.draw() // deck1 is already empty, program does not crash
+c = deck1.draw()
 print(deck1.description)
