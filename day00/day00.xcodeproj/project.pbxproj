@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0282A57D26F8FDDF00A65AD5 /* Tooling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0282A57C26F8FDDF00A65AD5 /* Tooling.swift */; };
 		02D7B27226724F010014BB4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7B27126724F010014BB4D /* AppDelegate.swift */; };
 		02D7B27426724F010014BB4D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7B27326724F010014BB4D /* SceneDelegate.swift */; };
 		02D7B27626724F010014BB4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02D7B27526724F010014BB4D /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0282A57C26F8FDDF00A65AD5 /* Tooling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tooling.swift; sourceTree = "<group>"; };
 		02D7B26E26724F010014BB4D /* day00.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = day00.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02D7B27126724F010014BB4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02D7B27326724F010014BB4D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				02D7B27A26724F040014BB4D /* Assets.xcassets */,
 				02D7B27C26724F040014BB4D /* LaunchScreen.storyboard */,
 				02D7B27F26724F040014BB4D /* Info.plist */,
+				0282A57C26F8FDDF00A65AD5 /* Tooling.swift */,
 			);
 			path = day00;
 			sourceTree = "<group>";
@@ -94,7 +97,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = 11;
 				TargetAttributes = {
 					02D7B26D26724F010014BB4D = {
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0282A57D26F8FDDF00A65AD5 /* Tooling.swift in Sources */,
 				02D7B27626724F010014BB4D /* ViewController.swift in Sources */,
 				02D7B27226724F010014BB4D /* AppDelegate.swift in Sources */,
 				02D7B27426724F010014BB4D /* SceneDelegate.swift in Sources */,
@@ -192,6 +196,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -252,6 +257,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
