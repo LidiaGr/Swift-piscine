@@ -61,7 +61,7 @@ extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyCell", for: indexPath) as! MyCollectionViewCell
-        
+        myCell.delegate = self
         myCell.imageURL = URL(string: ImagesURI[indexPath.item])
         return myCell
     }
